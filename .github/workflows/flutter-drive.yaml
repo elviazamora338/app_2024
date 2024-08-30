@@ -30,13 +30,13 @@ jobs:
       # https://github.com/actions/checkout
       - uses: actions/checkout@v3
 
-      # Sets up Java 21
+      # Sets up Java 17
       # https://github.com/actions/setup-java
-      - name: Java 21 Setup
+      - name: Java 17 Setup
         uses: actions/setup-java@v2
         with:
           distribution: "zulu"
-          java-version: "21.x"
+          java-version: "17.x"
 
       # Sets up a flutter environment with version 3.24.1.
       # https://github.com/marketplace/actions/flutter-action
