@@ -1,11 +1,26 @@
+// buildscript {
+//     repositories {
+//         google()
+//         mavenCentral()
+//     }
+//     dependencies {
+//         // Update to a version compatible with Gradle 8.5
+//         classpath 'com.android.tools.build:gradle:8.0.0'
+//     }
+// }
 buildscript {
+    ext {
+        // Define the Kotlin version here
+        kotlin_version = "1.8.0"
+    }
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        // Update to a version compatible with Gradle 8.5
-        classpath 'com.android.tools.build:gradle:8.0.0'
+        classpath "com.android.tools.build:gradle:8.0.0"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // Other classpaths if necessary
     }
 }
 allprojects {
