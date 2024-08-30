@@ -35,7 +35,7 @@ class _SignInScreenState extends State<SignInScreen> {
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFB14D60),
+                backgroundColor: const Color(0xFFF3ACB5),
                 minimumSize: const Size(200, 40),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -44,7 +44,7 @@ class _SignInScreenState extends State<SignInScreen> {
               child: const Text
               ('Sign in',
                 style: TextStyle(
-                  color:  Color(0xFFF3ACB5),
+                  color:  Color(0xFFB14D60),
                   fontSize: 14,
                   fontFamily: 'Montserrat-Regular', 
                 )
