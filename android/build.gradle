@@ -1,13 +1,13 @@
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        // Update to a version compatible with Gradle 8.5
-        classpath 'com.android.tools.build:gradle:8.0.0'
-    }
-}
+// buildscript {
+//     repositories {
+//         google()
+//         mavenCentral()
+//     }
+//     dependencies {
+//         // Update to a version compatible with Gradle 8.5
+//         classpath 'com.android.tools.build:gradle:8.0.0'
+//     }
+// }
 allprojects {
     repositories {
         google()

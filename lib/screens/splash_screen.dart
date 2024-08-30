@@ -1,0 +1,55 @@
+import 'package:flutter/material.dart';
+import 'package:app_swe2024/screens/sign_in_screen.dart';
+import 'dart:async';
+
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    startTime();
+  }
+
+  startTime() async {
+     var duration = const Duration(seconds: 5);
+     return Timer(duration, navigateToDeviceScreen);
+  }
+  navigateToDeviceScreen() {
+  Navigator.pushReplacement(
+    context, MaterialPageRoute(builder: (context) => SignInScreen()));
+  }
+        
+@override
+ Widget build(BuildContext context) {
+    return const Scaffold(
+      backgroundColor: Color(0xFF500F15),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: 
+          [
+            Text("Spell Book",
+              style: TextStyle(
+                color: Color(0xFFFCD7DD),
+                fontSize: 48,
+                fontFamily: "Fredoka",
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text("Everyday Planning",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontFamily: "Montserrat-Italic",
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
