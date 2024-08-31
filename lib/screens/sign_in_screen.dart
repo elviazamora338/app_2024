@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:app_swe2024/screens/login_screen.dart';
+import 'package:app_swe2024/screens/sign_up_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -33,7 +35,9 @@ class _SignInScreenState extends State<SignInScreen> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                navigateTo(SignUpScreen());
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFF3ACB5),
                 minimumSize: const Size(200, 40),
@@ -42,16 +46,19 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
               child: const Text
-              ('Sign in',
+              ('Sign Up',
                 style: TextStyle(
                   color:  Color(0xFFB14D60),
                   fontSize: 14,
-                  fontFamily: 'Montserrat-Regular', 
+                  fontFamily: 'Montserrat-Regular',
+                  fontWeight: FontWeight.bold, 
                 )
               ),
             ),
              ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                navigateTo(LoginScreen());
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFF3ACB5),
                 minimumSize: const Size(200, 40),
@@ -65,13 +72,20 @@ class _SignInScreenState extends State<SignInScreen> {
                     color: Color(0xFFB14D60),
                     fontSize: 14,
                     fontFamily: 'Montserrat-Regular', 
+                    fontWeight: FontWeight.bold,
                   )
                 ),
             ),
           ],
         ),
       ),
-      
+    );
+  }
+  // will be used to navigate to the next page
+  void navigateTo(Widget page) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => page)
     );
   }
 }
