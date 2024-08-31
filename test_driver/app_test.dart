@@ -27,7 +27,7 @@ void main() {
     */
     test("should give recommendation for French Press", () {
       // your code here
-    });
+    },skip:true);
 
     /*
       Given I am on the Coffee Device Selection Screen
@@ -40,7 +40,7 @@ void main() {
     */
     test("should give recommendation for Drip Machine", () {
       //your code here
-    });
+    }, skip:true);
   });
 
   group('Sad Paths', () {
@@ -52,7 +52,7 @@ void main() {
     test("should not advance from Choose Device Screen without a selection",
         () {
       //your code here
-    });
+    },skip:true);
 
     /*
       Given I chose "French Press" on the Coffee Device Selection Screen
@@ -62,7 +62,7 @@ void main() {
     */
     test("should not advance from Choose Cups Screen without cups", () {
       //your code here
-    });
+    },skip:true);
 
     /*
       Given I chose "French Press" on the Coffee Device Selection Screen
@@ -74,7 +74,7 @@ void main() {
     test("should not advance from Choose Cups Screen with negative cup amount",
         () {
       //your code here
-    });
+    },skip:true);
 
     /*
       Given I chose "French Press" on the Coffee Device Selection Screen
@@ -88,7 +88,7 @@ void main() {
         () {
       //your code here
       //if you can restrict the keyboard to numbers only you can delete this test
-    });
+    },skip:true);
 
     /*
       Given I chose "Drip Machine" on the Coffee Device Selection Screen
@@ -98,7 +98,7 @@ void main() {
     */
     test("should not advance from Choose Cups Screen without cups", () {
       //your code here
-    });
+    },skip:true);
 
     /*
       Given I chose "Drip Machine" on the Coffee Device Selection Screen
@@ -110,7 +110,7 @@ void main() {
     test("should not advance from Choose Cups Screen with negative cup amount",
         () {
       //your code here
-    });
+    },skip:true);
 
     /*
       Given I chose "Drip Machine" on the Coffee Device Selection Screen
@@ -125,10 +125,10 @@ void main() {
       //your code here
       //if you can restrict the keyboard to numbers only you can delete this test
     });
-  });
+  },skip:true);
 
   group('Back Button', () {
     //make up your own tests to check that the back button works
     //on every page
-  });
+  },skip:true);
 }
