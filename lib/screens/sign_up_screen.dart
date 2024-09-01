@@ -20,12 +20,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
         backgroundColor: const Color(0xFFF3ACB5),
       ), 
-      backgroundColor: Color(0xFF500F15),
+      backgroundColor: const Color(0xFF500F15),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
+          const Text(
             'Sign Up',
             style: TextStyle(
               fontSize: 35,
@@ -45,17 +45,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: TextFormField(
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         labelText: 'Username',
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: const TextStyle (
+                          color: Colors.white,
+                          fontFamily:"Montserrat-Regular",
+                          fontSize: 15.0,
+                        ),
                         hintText: 'Enter Username',
-                        hintStyle: TextStyle(color:  Color(0xFFF3ACB5)),
-                        prefixIcon: Icon(Icons.perm_identity, color: Colors.white),
+                        hintStyle: const TextStyle (
+                          color:  Color(0xFFF3ACB5),
+                          fontFamily:"Montserrat-Regular",
+                          fontSize: 15.0,
+                        ),
+                        prefixIcon: const Icon(Icons.perm_identity, color: Colors.white),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: const BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderSide: BorderSide(
+                            color: Color(0xFFF3ACB5),
+                          ),
+
                         ),
                       ),
                       
@@ -69,23 +84,38 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
             
                   //add some space between input fields
-                  SizedBox(height: 15.0),
+                  const SizedBox(height: 15.0),
             
             
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: TextFormField(
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       keyboardType: TextInputType.visiblePassword,
                       decoration: InputDecoration(
                         labelText: 'Password',
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: const TextStyle (
+                          color: Colors.white,
+                          fontFamily:"Montserrat-Regular",
+                          fontSize: 15.0,
+                        ),
                         hintText: 'Enter Password',
-                        hintStyle: TextStyle(color:  Color(0xFFF3ACB5)),
-                        prefixIcon: Icon(Icons.password, color: Colors.white),
+                        hintStyle: const TextStyle (
+                          color:  Color(0xFFF3ACB5),
+                          fontFamily:"Montserrat-Regular",
+                          fontSize: 15.0,
+                        ),
+                        prefixIcon: const Icon(Icons.password, color: Colors.white),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: const BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderSide: BorderSide(
+                            color: Color(0xFFF3ACB5),
+                          ),
+
                         ),
                       ),
                       
@@ -99,23 +129,38 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
             
                   //add some space between input fields
-                  SizedBox(height: 15.0),
+                  const SizedBox(height: 15.0),
             
             
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: TextFormField(
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       keyboardType: TextInputType.visiblePassword,
                       decoration: InputDecoration(
                         labelText: 'Re-Enter Password',
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: const TextStyle (
+                          color: Colors.white,
+                          fontFamily:"Montserrat-Regular",
+                          fontSize: 15.0,
+                        ),
                         hintText: 'Re-Enter Password',
-                        hintStyle: TextStyle(color:  Color(0xFFF3ACB5)),
-                        prefixIcon: Icon(Icons.password, color: Colors.white),
+                        hintStyle: const TextStyle (
+                          color:  Color(0xFFF3ACB5),
+                          fontFamily:"Montserrat-Regular",
+                          fontSize: 15.0,
+                        ),
+                        prefixIcon: const Icon(Icons.password, color: Colors.white),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: const BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderSide: BorderSide(
+                            color: Color(0xFFF3ACB5),
+                          ),
+
                         ),
                       ),
                       
@@ -128,25 +173,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
 
-                  SizedBox(height: 15.0),
+                  const SizedBox(height: 15.0),
 
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 60.0),
                     child: MaterialButton(
                       minWidth: double.infinity,
                       onPressed: () {},
+                      color:const Color(0xFFF3ACB5),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
                       child: 
-                        Text(
+                        const Text(
                           'Sign Up',
                           style: TextStyle(
                             fontSize: 17,
                             color: Color(0xFF500F15),
                             fontFamily: "Fredoka",
-                            
-
                           ),
                         ),
-                        color:Color(0xFFF3ACB5),
+                        
                         
                         
                     
