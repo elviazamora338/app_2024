@@ -27,84 +27,133 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           // making sure it's in the center of screen
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start, // Aligns children to the left
           // children of the column
           children: 
           [
             // the text title is login
             const Text("Login",
-            // this was not working >:( 
-              // textAlign: TextAlign.left,
+              textAlign: TextAlign.left,
               style: TextStyle(
-                color: Color(0xFFFCD7DD),
-                fontSize: 20,
+                color: Color(0xFFF3ACB5),
+                fontSize: 35,
                 fontFamily: "Fredoka",
                 fontWeight: FontWeight.bold,
               ),
             ),
             // some spacing
             const SizedBox(height: 20),
-            // a container for the textfields
-            Container(
-              width: 350,
-              height: 150,
-              // some decoration
-              decoration: BoxDecoration(
-                color: const Color(0xFFF3ACB5),
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  color: const Color(0xFFFCD7DD),
-                  width: 2,
-                ),
-                // chaning the color of the shadow
-                // boxShadow: const [
-                //   BoxShadow(
-                //     color: Color(0xFFFCD7DD),
-                //     blurRadius: 10,
-                //     offset: Offset(0, 5),
-                //   ),
-                // ],                
-              ),
+           
               // the children of the container
-              child: const Column(
-                children: [
-                  // the listtile for the username
-                  ListTile(
-                    title: TextField(
-                      decoration: InputDecoration(
-                        hintText: "Enter your username",
-                        hintStyle: TextStyle(
-                          color: Color(0xFF500F15),
-                          fontSize: 18,
-                          fontFamily: "Montserrat-Regular",
+            Column(
+              children: [
+                // the listtile for the username
+                const ListTile(
+                  title: TextField(
+                     style: TextStyle(
+                      color: Colors.white,
+                    ),
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.perm_identity,
+                        color: Colors.white,
+                      ),
+                      hintText: "Enter your username",
+                      hintStyle: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontFamily: "Montserrat-Regular",
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          color: Colors.white,
                         ),
-                        border: InputBorder.none,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          color: Colors.white,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          color: Color(0xFFF3ACB5),
+                        ),
                       ),
                     ),
                   ),
-                  // divider between username and password
-                  Divider(
-                    color: Color(0xFFFCD7DD),
-                    thickness: 2,
-                  ),
-                  // the listtile for the password
-                  ListTile(
-                    title: TextField(
-                      // hides password
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: "Enter your password",
-                        hintStyle: TextStyle(
-                          color: Color(0xFF500F15),
-                          fontSize: 18,
-                          fontFamily: "Montserrat-Regular",
+                ),
+              
+
+                // the listtile for the password
+                const ListTile(
+                  title: TextField(
+                    obscureText: true,
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.password,
+                        color: Colors.white,
+                      ),
+                      hintText: "Enter your password",
+                      hintStyle: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontFamily: "Montserrat-Regular",
+                      ),
+                      // the border of the textfield
+                      border: OutlineInputBorder( 
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          color: Colors.white, // Border color
                         ),
-                        border: InputBorder.none,
+                      ),
+                      // when the textfield is enabled
+                      enabledBorder: OutlineInputBorder(
+                         borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          color: Colors.white, // Border color when enabled
+                        ),
+                      ),
+                      // when the textfield is focused
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          color: Color(0xFFF3ACB5), // Border color when focused
+                        ),
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+                // some spacing
+                const SizedBox(
+                  height:20,
+                ),
+                // the login button
+                ElevatedButton(
+                  onPressed: () {
+                    // navigate to the welcome screen
+                  },
+                  // changing the sttyle of the button
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFF3ACB5),
+                    // minimumSize: const Size(200, 40),
+                    minimumSize: const Size(300, 40),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: const Text("Login",
+                    style: TextStyle(
+                      color: Color(0xFF500F15),
+                      fontSize: 17,
+                      fontFamily: "Fedoka",
+                      
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
