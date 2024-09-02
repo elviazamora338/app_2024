@@ -17,6 +17,20 @@ void main() {
   });
 
   group('Happy Paths', () {
+  
+    /// tests the functionality of the sign in button
+      test("should be able to login", () async {
+      print('Tapping "Login" button');
+      await driver?.tap(find.text('Login'));
+      await Future.delayed(const Duration(seconds: 1)); // Add
+
+      // Go back to the main screen using the back button on the app bar
+      print('Tapping back icon to return to main screen');
+      await driver?.tap(find.byTooltip('Back'));
+      await Future.delayed(const Duration(seconds: 1));
+      // your code here
+    });
+    // tests the functionality of the login button
     test("should be able to sign in", () async {
       print('Tapping "Sign Up" button');
       await driver?.tap(find.text('Sign Up'));
