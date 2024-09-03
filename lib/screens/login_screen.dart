@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:app_swe2024/models/authorization.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -6,7 +7,14 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+ 
+  final Authorization authorization = Authorization();
+
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -47,12 +55,14 @@ class _LoginScreenState extends State<LoginScreen> {
             Column(
               children: [
                 // the listtile for the username
-                const ListTile(
+                ListTile(
                   title: TextField(
-                     style: TextStyle(
-                      color: Colors.white,
+                    controller: _usernameController,
+                    style: const TextStyle(
+                      // color changes when entering text
+                      color: Color(0xFFF3ACB5),
                     ),
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.perm_identity,
                         color: Colors.white,
                       ),
@@ -86,13 +96,15 @@ class _LoginScreenState extends State<LoginScreen> {
               
 
                 // the listtile for the password
-                const ListTile(
+                ListTile(
                   title: TextField(
+                    controller: _passwordController,
                     obscureText: true,
-                    style: TextStyle(
-                      color: Colors.white,
+                    style: const TextStyle(
+                      // color changes when inputting text
+                      color: Color(0xFFF3ACB5),
                     ),
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.password,
                         color: Colors.white,
                       ),
@@ -106,21 +118,24 @@ class _LoginScreenState extends State<LoginScreen> {
                       border: OutlineInputBorder( 
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         borderSide: BorderSide(
-                          color: Colors.white, // Border color
+                          // color of the border
+                          color: Colors.white, 
                         ),
                       ),
                       // when the textfield is enabled
                       enabledBorder: OutlineInputBorder(
                          borderRadius: BorderRadius.all(Radius.circular(10)),
                         borderSide: BorderSide(
-                          color: Colors.white, // Border color when enabled
+                          // Border color when enabled
+                          color: Colors.white, 
                         ),
                       ),
                       // when the textfield is focused
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         borderSide: BorderSide(
-                          color: Color(0xFFF3ACB5), // Border color when focused
+                          // Border color when focused
+                          color: Color(0xFFF3ACB5), 
                         ),
                       ),
                     ),
@@ -133,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 // the login button
                 ElevatedButton(
                   onPressed: () {
-                    // navigate to the welcome screen
+                    authorization.login(context, _usernameController, _passwordController);
                   },
                   // changing the sttyle of the button
                   style: ElevatedButton.styleFrom(
@@ -149,7 +164,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: Color(0xFF500F15),
                       fontSize: 17,
                       fontFamily: "Fedoka",
-                      
                     ),
                   ),
                 ),
@@ -160,4 +174,5 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+ 
 }
