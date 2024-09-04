@@ -39,7 +39,7 @@ void main() {
     test('return warning if password and re-entered password do not match', ()
     {
        // expect the validate function to return the warning that the password inputs don't match
-      expect(authorization.validate("username", "password", "password12"), warnings[6]); 
+      expect(authorization.validate("username", "password", "password12"), warnings[5]); 
     });
 
 
