@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:app_swe2024/models/authorization.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -6,6 +7,14 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  // Instance of the Authorization class
+  final authorization = Authorization();
+
+  // Text controllers for the username and passwords fields
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _reEnterPasswordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +54,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: TextFormField(
+                       // added for testing purposes
+                      key: const Key('usernameField'),
+                      // to store the input of the field username
+                      controller: _usernameController,
                       style: const TextStyle(color: Colors.white),
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
@@ -75,11 +88,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       
                       onChanged: (String value) {
-                          //stores input of field 'Email'
+                          
                       },
-                      validator: (value) {
-                        return value!.isEmpty ? 'Please enter an email' : null;
-                      },
+                      // validator: (value) {
+                      //   return value!.isEmpty ? 'Please enter an email' : null;
+                      // },
                     ),
                   ),
             
@@ -90,6 +103,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: TextFormField(
+                       // added for testing purposes
+                      key: const Key('passwordField'),
+                      // to store the input of the field password
+                      controller: _passwordController,
                       style: const TextStyle(color: Colors.white),
                       keyboardType: TextInputType.visiblePassword,
                       decoration: InputDecoration(
@@ -122,9 +139,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       onChanged: (String value) {
                           //stores input of field 'Password'
                       },
-                      validator: (value) {
-                        return value!.isEmpty ? 'Please enter a password' : null;
-                      },
+                      // validator: (value) {
+                      //   return value!.isEmpty ? 'Please enter a password' : null;
+                      // },
                     ),
                   ),
             
@@ -135,6 +152,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: TextFormField(
+                      // added for testing purposes
+                      key: const Key('re-enterpasswordField'),
+                      // to store the input of the field password
+                      controller: _reEnterPasswordController,
                       style: const TextStyle(color: Colors.white),
                       keyboardType: TextInputType.visiblePassword,
                       decoration: InputDecoration(
@@ -167,19 +188,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       onChanged: (String value) {
                           //stores input of field 'Password'
                       },
-                      validator: (value) {
-                        return value!.isEmpty ? 'Please enter a password' : null;
-                      },
+                      // validator: (value) {
+                      //   return value!.isEmpty ? 'Please enter a password' : null;
+                      // },
                     ),
                   ),
 
                   const SizedBox(height: 15.0),
 
                   Padding(
+                    key: const Key('signInButton'),
                     padding: const EdgeInsets.symmetric(horizontal: 60.0),
                     child: MaterialButton(
                       minWidth: double.infinity,
-                      onPressed: () {},
+                      onPressed: () {
+                        authorization.signIn(context, _usernameController, _passwordController, _reEnterPasswordController);
+                      },
                       color:const Color(0xFFF3ACB5),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
@@ -193,11 +217,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             fontFamily: "Fredoka",
                           ),
                         ),
-                        
-                        
-                        
-                    
-                    
                     ),
                   ),
                 ],

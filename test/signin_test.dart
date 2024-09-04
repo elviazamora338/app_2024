@@ -19,20 +19,27 @@ void main() {
     test('return warning that username and password is empty', () {
       // expect the validate function to return the warning that username and password is empty
       // grabs validate function from instance of Authorization class
-      expect(authorization.validate("", ""), warnings[2]);
+      expect(authorization.validate("", "",""), warnings[2]);
     });
     // test to check if the username is empty
     test('return warning that username is empty', () {
       // expect the validate function to return the warning that username is empty
       // grabs validate function from instance of Authorization class
-      expect(authorization.validate("", "password"), warnings[0]);
+      expect(authorization.validate("", "password", "re-entered password"), warnings[0]);
     });
     
     // test to check if the password is empty
     test('return warning if password is empty', () {
       // expect the validate function to return the warning that password is empty
       // grabs validate function from instance of Authorization class
-      expect(authorization.validate("username", ""), warnings[1]);
+      expect(authorization.validate("username", "", "re-entered password"), warnings[1]);
+    });
+
+    // test to check if passwords match
+    test('return warning if password and re-entered password do not match', ()
+    {
+       // expect the validate function to return the warning that the password inputs don't match
+      expect(authorization.validate("username", "password", "password12"), warnings[6]); 
     });
 
 
