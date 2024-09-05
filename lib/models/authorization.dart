@@ -7,11 +7,12 @@ class Authorization {
   "Password is empty",
   "Username and Password is empty",
   "Username not found or incorrect",
-  "Password is incorrect"
+  "Password is incorrect",
+  "Passwords do not match"
   ];
    // function to validate login credentials are entered and correct
   // will need to change this when confirming from datbase - E
-  String validate(String username, String password) {
+  String validate(String username, String password, String? reEnterPassword) {
     if (username.isEmpty && password.isEmpty) 
     {
       // will return the warning: Username and Password is empty
@@ -24,22 +25,29 @@ class Authorization {
     // if the password is empty
     else if (password.isEmpty) {
       return warnings[1];
-    } 
-    // if the username and password is empty
+    }
     else if (username.isEmpty && password.isEmpty) {
       return warnings[2];
     } 
+    else if(reEnterPassword != null && password != reEnterPassword)
+    {
+      return warnings[5];
+    }
+   // if the username and password is empty
     else {
       return "Login Successful";
     }
   }
   // function to login
-  void login(BuildContext context, TextEditingController _usernameController, TextEditingController _passwordController)
+  void signIn(BuildContext context, TextEditingController _usernameController, TextEditingController _passwordController, TextEditingController? _reEnterPassword)
   {
     String username = _usernameController.text;
     String password = _passwordController.text;
+   // Check if reEnterPassword is provided and not null before accessing its text
+    String ? reEnterPassword = _reEnterPassword?.text;
+    
     // calling the validate function to check input of user
-    String result = validate(username, password);
+    String result = validate(username, password, reEnterPassword);
     // showing the result in a snackbar
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(

@@ -57,16 +57,24 @@ class _LoginScreenState extends State<LoginScreen> {
                 // the listtile for the username
                 ListTile(
                   title: TextField(
+                    // adding key for tests
+                    key: const Key('usernameField'),
                     controller: _usernameController,
                     style: const TextStyle(
                       // color changes when entering text
                       color: Color(0xFFF3ACB5),
                     ),
                     decoration: const InputDecoration(
+                      labelText: "Username",
+                      labelStyle: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontFamily: "Montserrat-Regular",
+                      ),
                       prefixIcon: Icon(Icons.perm_identity,
                         color: Colors.white,
                       ),
-                      hintText: "Enter your username",
+                      hintText: "Enter Username",
                       hintStyle: TextStyle(
                         color: Colors.white,
                         fontSize: 15,
@@ -98,6 +106,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 // the listtile for the password
                 ListTile(
                   title: TextField(
+                    // added for testing purposes
+                    key: const Key('passwordField'),
                     controller: _passwordController,
                     obscureText: true,
                     style: const TextStyle(
@@ -105,10 +115,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: Color(0xFFF3ACB5),
                     ),
                     decoration: const InputDecoration(
+                      labelText: "Password",
+                      labelStyle: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontFamily: "Montserrat-Regular",
+                      ),
                       prefixIcon: Icon(Icons.password,
                         color: Colors.white,
                       ),
-                      hintText: "Enter your password",
+                      hintText: "Enter Password",
                       hintStyle: TextStyle(
                         color: Colors.white,
                         fontSize: 15,
@@ -147,8 +163,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 // the login button
                 ElevatedButton(
+                  key: const Key('signInButton'),
                   onPressed: () {
-                    authorization.login(context, _usernameController, _passwordController);
+                    authorization.signIn(context, _usernameController, _passwordController, null);
                   },
                   // changing the sttyle of the button
                   style: ElevatedButton.styleFrom(
