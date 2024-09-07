@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:app_swe2024/models/authorization.dart';
+import 'package:app_swe2024/screens/welcome_screen.dart';
+
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -166,8 +168,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   key: const Key('signInButton'),
                   onPressed: () {
                     authorization.signIn(context, _usernameController, _passwordController, null);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => WelcomeScreen()),
+                    );
                   },
-                  // changing the sttyle of the button
+                  // changing the style of the button
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFF3ACB5),
                     // minimumSize: const Size(200, 40),
