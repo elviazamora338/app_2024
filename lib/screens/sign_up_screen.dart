@@ -19,14 +19,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+         leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Color(0xFFB14D60),
+          ),
+          tooltip: 'Back',
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ), 
         title: const Text("Sign Up",
           style: TextStyle(
-              color: Color(0xFFB14D60),
-              fontSize: 20,
-              fontFamily: "Fredoka",
-              fontWeight: FontWeight.bold,
-            ),
+            color: Color(0xFFB14D60),
+            fontSize: 20,
+            fontFamily: "Fredoka",
+            fontWeight: FontWeight.bold,
           ),
+        ),
         backgroundColor: const Color(0xFFF3ACB5),
       ), 
       backgroundColor: const Color(0xFF500F15),

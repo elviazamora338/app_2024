@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart' ;
+import 'package:flutter/material.dart';
+import 'package:app_swe2024/screens/welcome_screen.dart';
 
 class Authorization {
   // list that contains the warnings
@@ -8,7 +9,8 @@ class Authorization {
   "Username and Password is empty",
   "Username not found or incorrect",
   "Password is incorrect",
-  "Passwords do not match"
+  "Passwords do not match",
+  "Login Successful"
   ];
    // function to validate login credentials are entered and correct
   // will need to change this when confirming from datbase - E
@@ -35,7 +37,7 @@ class Authorization {
     }
    // if the username and password is empty
     else {
-      return "Login Successful";
+      return warnings[6];
     }
   }
   // function to login
@@ -56,5 +58,15 @@ class Authorization {
         duration: const Duration(seconds: 2),
       ),
     );
+    // if the login is successful then the user will be sent to the welcome screen
+    if(result == warnings[6])
+    {
+      Future.delayed(const Duration(seconds: 1), () {
+      Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => WelcomeScreen())
+      );
+    });
+    }
   }
 }
