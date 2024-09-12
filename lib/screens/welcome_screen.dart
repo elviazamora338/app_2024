@@ -71,6 +71,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 style: TextStyle(
                   color:  Color(0xFFD0EDF2),
                   fontSize: 14,
+                  fontFamily: "Martel",
                 ),
               ), 
             )
