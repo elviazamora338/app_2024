@@ -35,7 +35,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         backgroundColor: const Color(0xFF028090),
       ), 
       backgroundColor: const Color(0xFFD0EDF2),
-      body:const Center(
+      body:Center(
         // creating a column
         child: Column(
           // making sure it's in the center of screen
@@ -48,19 +48,20 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: Color(0xFF1A5E63),
-                fontSize: 35,
-                fontFamily: "Martel",
-                fontWeight: FontWeight.bold,
+                fontSize: 40,
+                fontFamily: "Sansita",
               ),
             ),
             const Text("Choose Group",
               style: TextStyle(
                 // need to add font family
-                fontFamily: "Cormorant Infant",
-                fontSize: 18,
+                fontFamily: "CormorantInfant",
+                fontSize: 20,
+                fontStyle: FontStyle.italic,
                 color: Color(0XFF028090),          
               ),
             ),
+            const SizedBox(height: 20),
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////            
             // Need to create a function to insert as many buttons depending on how many groups
@@ -70,7 +71,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ElevatedButton(onPressed: () {},
                style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF019C9F),
-                minimumSize: const Size(120, 40),
+                minimumSize: const Size(130, 40),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -78,7 +79,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               child: const Text("Group 1",
                 style: TextStyle(
                   color:  Color(0xFFD0EDF2),
-                  fontSize: 14,
+                  fontSize: 15,
                   fontFamily: "Martel",
                 ),
               ), 

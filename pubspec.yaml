@@ -95,7 +95,7 @@ flutter:
     - family: Sansita
       fonts:
         - asset: assets/fonts/Sansita-Regular.ttf
-    - family: CormorantInfant-Regular
+    - family: CormorantInfant
       fonts: 
         - asset: assets/fonts/CormorantInfant-Regular.ttf
 
