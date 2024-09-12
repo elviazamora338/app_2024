@@ -18,6 +18,15 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+       leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Color(0xFFB14D60),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ), 
         title: const Text("Login",
           style: TextStyle(
             color: Color(0xFFB14D60),
@@ -26,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: const Color(0xFFF3ACB5),
+      backgroundColor: const Color(0xFFF3ACB5),
       ), 
       backgroundColor: const Color(0xFF500F15),
       // my body

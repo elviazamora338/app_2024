@@ -42,7 +42,6 @@ void main() {
       expect(authorization.validate("username", "password", "password12"), warnings[5]); 
     });
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //  WILL NEED TO CHANGE THIS TEST WHEN CONFIRMING FROM DATABASE - E
     // the username is correct and in the database but the password is incorrect

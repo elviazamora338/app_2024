@@ -42,11 +42,18 @@ void main() {
       await driver?.tap(find.byValueKey('signInButton'));
       //should get successful login text
       expect(await driver?.getText(find.text('Login Successful')), 'Login Successful');
+     
+    });
+    test("should see welcome screen if sign up successful", () async {
 
+       //should get successful login text
+      expect(await driver?.getText(find.text('Welcome!')), 'Welcome!');
       // Go back to the main screen using the back button on the app bar
       print('Tapping back icon to return to main screen');
-      await driver?.tap(find.byTooltip('Back'));
       await Future.delayed(const Duration(seconds: 1));
+      await driver?.tap(find.byTooltip('Back'));
+      await Future.delayed(const Duration(seconds: 3));
+
     });
     // tests the functionality of the login button
     test("should be able to choose sign up option", () async {
@@ -76,21 +83,27 @@ void main() {
       expect(await driver?.getText(find.text('Login Successful')), 'Login Successful');
     
     });
+  test("should see welcome screen if login successsful", () async {
 
+      //should get successful login text
+      expect(await driver?.getText(find.text('Welcome!')), 'Welcome!');
+      // Go back to the main screen using the back button on the app bar
+      print('Tapping back icon to return to main screen');
+      await Future.delayed(const Duration(seconds: 1));
+      await driver?.tap(find.byTooltip('Back'));
+      await Future.delayed(const Duration(seconds: 3));
+
+    });
 
   });
 
   group('Sad Paths', () {
     test("should get warning if Sign Up fields missing", () async {
-//////////////////////////////////////////////////////////////////////////////////////
-       // Go back to the main screen using the back button on the app bar
-      print('Tapping back icon to return to main screen');
-      await driver?.tap(find.byTooltip('Back'));
-      await Future.delayed(const Duration(seconds: 1));
+      // sign up button
       await driver?.tap(find.text('Sign Up'));
       await Future.delayed(const Duration(seconds: 1)); 
-///////////////////////////////////////////////////////////////////////////////////////////
 
+      print('Testing sign up warnings');
       await driver?.tap(find.byValueKey('passwordField'));
       await driver?.enterText('testpassword');
 
@@ -133,6 +146,7 @@ void main() {
       await Future.delayed(const Duration(seconds: 1)); 
 ///////////////////////////////////////////////////////////////////////////////////////////
      //Attempting to login without username
+     print('Testing login warnings');
       await driver?.tap(find.byValueKey('passwordField'));
       await driver?.enterText('password');
 
