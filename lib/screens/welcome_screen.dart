@@ -32,6 +32,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.account_circle,
+              color: Color(0xFFD0EDF2),
+            ),
+            tooltip: 'Profile',
+            onPressed: (){},
+          ),
+        ],
         backgroundColor: const Color(0xFF028090),
       ), 
       backgroundColor: const Color(0xFFD0EDF2),
