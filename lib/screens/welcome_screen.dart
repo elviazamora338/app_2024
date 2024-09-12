@@ -15,7 +15,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color: Color(0xFFD0EDF2),
           ),
           tooltip: 'Back',
           onPressed: () {
@@ -26,16 +26,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         ), 
         title: const Text("Welcome",
           style: TextStyle(
-            color: Colors.black,
+            color:  Color(0xFFD0EDF2),
             fontSize: 20,
-            fontFamily: "Fredoka",
+            fontFamily: "Martel",
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: const Color(0xFFD0EDF2),
+        backgroundColor: const Color(0xFF028090),
       ), 
-      backgroundColor: const Color(0xFF028090),
-      body:Center(
+      backgroundColor: const Color(0xFFD0EDF2),
+      body:const Center(
         // creating a column
         child: Column(
           // making sure it's in the center of screen
@@ -47,10 +47,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             const Text("Welcome!",
               textAlign: TextAlign.left,
               style: TextStyle(
-                color: Colors.white,
+                color: Color(0xFF1A5E63),
                 fontSize: 35,
-                fontFamily: "Fredoka",
+                fontFamily: "Martel",
                 fontWeight: FontWeight.bold,
+              ),
+            ),
+            const Text("Choose Group",
+              style: TextStyle(
+                // need to add font family
+                fontFamily: "Cormorant Infant",
+                fontSize: 18,
+                color: Color(0XFF028090),          
               ),
             ),
 
@@ -75,6 +83,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ),
               ), 
             )
+
           ],
         ),
       ),
