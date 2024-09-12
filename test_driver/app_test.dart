@@ -85,6 +85,9 @@ void main() {
     });
   test("should see welcome screen if login successsful", () async {
 
+
+////////////////////////////////////////////////////////////////////////
+///      REMOVE THIS SECTION IN ORDER TO TEST GROUP BUTTON TO HOME SCREEN
       //should get successful login text
       expect(await driver?.getText(find.text('Welcome!')), 'Welcome!');
       // Go back to the main screen using the back button on the app bar
@@ -92,8 +95,29 @@ void main() {
       await Future.delayed(const Duration(seconds: 1));
       await driver?.tap(find.byTooltip('Back'));
       await Future.delayed(const Duration(seconds: 3));
-
+///////////////////////////////////////////////////////////////////////////////
     });
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+///  Here you will create a test to check if the button works correctly -E
+    test("user should be able to choose a group", () async {
+
+      // driver should tap button with the text "Group1"
+
+      // Button should take user to the group's home page and so
+      // the driver should find the text "Home"
+
+///////// UNCOMMENT THIS SECTION AFTER CODE IS COMPLETE TO TEST//////////////////////////////////////////////
+      // // YOU CAN TEST YOUR TESTS BY OPENING YOUR EMULATOR AND RUNNING THIS COMMAND
+      // // IN YOUR VSC TERMINAL flutter drive --target=test_driver/app.dart
+
+      // // Go back to the main screen using the back button on the app bar
+      // print('Tapping back icon to return to main screen');
+      // await Future.delayed(const Duration(seconds: 1));
+      // await driver?.tap(find.byTooltip('Back'));
+      // await Future.delayed(const Duration(seconds: 3));
+         
+      
+    },skip:true);
 
   });
 
