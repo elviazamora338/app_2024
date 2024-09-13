@@ -1,6 +1,8 @@
+import 'package:app_swe2024/screens/home_screen.dart';
 import 'package:app_swe2024/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:app_swe2024/screens/sign_in_screen.dart';
+import 'package:app_swe2024/screens/home_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -78,7 +80,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             // user has in database (This is part of Database Sprint Task)
             // for now create a function to navigate or insert navigate functionality for user to go to
             // Home Screen with dummy button -E
-            ElevatedButton(onPressed: () {},
+            ElevatedButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+            },
                style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF019C9F),
                 minimumSize: const Size(130, 40),
