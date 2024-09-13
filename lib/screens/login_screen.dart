@@ -12,7 +12,7 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         title: const Text("Login",
           style: TextStyle(
-            color: Color(0xFFB14D60),
+            color: Color.fromARGB(255, 2, 128, 144),
             fontSize: 20,
             fontFamily: "Fredoka",
             fontWeight: FontWeight.bold,
@@ -20,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         backgroundColor: const Color(0xFFF3ACB5),
       ), 
-      backgroundColor: Color(0xFF500F15),
+      backgroundColor: Color.fromARGB(255, 2, 128, 144),
       body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
