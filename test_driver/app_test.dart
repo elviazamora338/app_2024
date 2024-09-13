@@ -91,10 +91,10 @@ void main() {
       //should get successful login text
       expect(await driver?.getText(find.text('Welcome!')), 'Welcome!');
       // Go back to the main screen using the back button on the app bar
-      print('Tapping back icon to return to main screen');
-      await Future.delayed(const Duration(seconds: 1));
-      await driver?.tap(find.byTooltip('Back'));
-      await Future.delayed(const Duration(seconds: 3));
+      //print('Tapping back icon to return to main screen');
+      //await Future.delayed(const Duration(seconds: 1));
+      //await driver?.tap(find.byTooltip('Back'));
+      //await Future.delayed(const Duration(seconds: 3));
 ///////////////////////////////////////////////////////////////////////////////
     });
 /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -105,7 +105,7 @@ void main() {
       await driver?.tap(find.text('Group 1'));
       // Button should take user to the group's home page and so
       // the driver should find the text "Home"
-      //expect(await driver?.getText(find.text('Home')), 'Home');
+      expect(await driver?.getText(find.text('Home')), 'Home');
 
 ///////// UNCOMMENT THIS SECTION AFTER CODE IS COMPLETE TO TEST//////////////////////////////////////////////
       // // YOU CAN TEST YOUR TESTS BY OPENING YOUR EMULATOR AND RUNNING THIS COMMAND

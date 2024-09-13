@@ -75,7 +75,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ),
             const SizedBox(height: 20),
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////            
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////            
             // Need to create a function to insert as many buttons depending on how many groups
             // user has in database (This is part of Database Sprint Task)
             // for now create a function to navigate or insert navigate functionality for user to go to
