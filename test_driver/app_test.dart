@@ -15,120 +15,197 @@ void main() {
       driver?.close();
     }
   });
+
   group('Happy Paths', () {
-    /*
-      Given I am on the Coffee Device Selection Screen
-      When I tap "French Press"
-      And I tap "Continue"
-      And I enter "5"
-      And I tap "Continue"
-      Then I should see "63g - course ground coffee"
-      And I should see "887g - water"
-    */
-    test("should give recommendation for French Press", () {
-      // your code here
+  
+  /// tests the functionality of the sign in button
+    test("should be able choose login option", () async {
+    print('Tapping "Login" button');
+    await driver?.tap(find.text('Login'));
+    await Future.delayed(const Duration(seconds: 1)); // Add
+
+   
+    // your code here
+  });
+    test('should be able to successfully login', () async {
+
+      // entering fake username
+      // finding by key
+      await driver?.tap(find.byValueKey('usernameField'));
+      // entering username
+      await driver?.enterText('username');
+      // finding by key
+      await driver?.tap(find.byValueKey('passwordField'));
+      // entering fake password
+      await driver?.enterText('testpassword');
+      // finding by key the button
+      await driver?.tap(find.byValueKey('signInButton'));
+      //should get successful login text
+      expect(await driver?.getText(find.text('Login Successful')), 'Login Successful');
+     
+    });
+    test("should see welcome screen if sign up successful", () async {
+
+       //should get successful login text
+      expect(await driver?.getText(find.text('Welcome!')), 'Welcome!');
+      // Go back to the main screen using the back button on the app bar
+      print('Tapping back icon to return to main screen');
+      await Future.delayed(const Duration(seconds: 1));
+      await driver?.tap(find.byTooltip('Back'));
+      await Future.delayed(const Duration(seconds: 3));
+
+    });
+    // tests the functionality of the login button
+    test("should be able to choose sign up option", () async {
+      print('Tapping "Sign Up" button');
+      await driver?.tap(find.text('Sign Up'));
+      await Future.delayed(const Duration(seconds: 1)); 
+
+    });
+    test("should be able to succesfully sign up", () async{
+
+      // entering fake username
+      // finding by key
+      await driver?.tap(find.byValueKey('usernameField'));
+      // entering username
+      await driver?.enterText('username');
+      // finding by key
+      await driver?.tap(find.byValueKey('passwordField'));
+      // entering fake password
+      await driver?.enterText('testpassword');
+      // finding by key
+      await driver?.tap(find.byValueKey('re-enterpasswordField'));
+      // entering fake password
+      await driver?.enterText('testpassword');
+      // finding by key the button
+      await driver?.tap(find.byValueKey('signInButton'));
+      //should get successful login text
+      expect(await driver?.getText(find.text('Login Successful')), 'Login Successful');
+    
+    });
+  test("should see welcome screen if login successsful", () async {
+
+
+////////////////////////////////////////////////////////////////////////
+///      REMOVE THIS SECTION IN ORDER TO TEST GROUP BUTTON TO HOME SCREEN
+      //should get successful login text
+      expect(await driver?.getText(find.text('Welcome!')), 'Welcome!');
+      // Go back to the main screen using the back button on the app bar
+      print('Tapping back icon to return to main screen');
+      await Future.delayed(const Duration(seconds: 1));
+      await driver?.tap(find.byTooltip('Back'));
+      await Future.delayed(const Duration(seconds: 3));
+///////////////////////////////////////////////////////////////////////////////
+    });
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+///  Here you will create a test to check if the button works correctly -E
+    test("user should be able to choose a group", () async {
+
+      // driver should tap button with the text "Group1"
+
+      // Button should take user to the group's home page and so
+      // the driver should find the text "Home"
+
+///////// UNCOMMENT THIS SECTION AFTER CODE IS COMPLETE TO TEST//////////////////////////////////////////////
+      // // YOU CAN TEST YOUR TESTS BY OPENING YOUR EMULATOR AND RUNNING THIS COMMAND
+      // // IN YOUR VSC TERMINAL flutter drive --target=test_driver/app.dart
+
+      // // Go back to the main screen using the back button on the app bar
+      // print('Tapping back icon to return to main screen');
+      // await Future.delayed(const Duration(seconds: 1));
+      // await driver?.tap(find.byTooltip('Back'));
+      // await Future.delayed(const Duration(seconds: 3));
+         
+      
     },skip:true);
 
-    /*
-      Given I am on the Coffee Device Selection Screen
-      When I tap "Drip Machine"
-      And I tap "Continue"
-      And I enter "5"
-      And I tap "Continue"
-      Then I should see "52g - medium ground coffee"
-      And I should see "887g - water"
-    */
-    test("should give recommendation for Drip Machine", () {
-      //your code here
-    }, skip:true);
   });
 
   group('Sad Paths', () {
-    /*
-      Given I am on the Coffee Device Selection Screen
-      When I press "Continue"
-      Then I expect to still be on the Coffee Device Selection Screen
-    */
-    test("should not advance from Choose Device Screen without a selection",
-        () {
-      //your code here
-    },skip:true);
+    test("should get warning if Sign Up fields missing", () async {
+      // sign up button
+      await driver?.tap(find.text('Sign Up'));
+      await Future.delayed(const Duration(seconds: 1)); 
 
-    /*
-      Given I chose "French Press" on the Coffee Device Selection Screen
-      And I advanced to the Choose Cups Screen
-      When I press "Continue"
-      Then I expect to still be on the Choose Cups Screen
-    */
-    test("should not advance from Choose Cups Screen without cups", () {
-      //your code here
-    },skip:true);
+      print('Testing sign up warnings');
+      await driver?.tap(find.byValueKey('passwordField'));
+      await driver?.enterText('testpassword');
 
-    /*
-      Given I chose "French Press" on the Coffee Device Selection Screen
-      And I advanced to the Choose Cups Screen
-      When I enter "-1"
-      And I press "Continue"
-      Then I expect to still be on the Choose Cups Screen
-    */
-    test("should not advance from Choose Cups Screen with negative cup amount",
-        () {
-      //your code here
-    },skip:true);
+      // Attempt to sign up without entering a username
+      await driver?.tap(find.byValueKey('signInButton'));
+      // Verify that the warning is shown
+      expect(await driver?.getText(find.text('Username is empty')), 'Username is empty');
 
-    /*
-      Given I chose "French Press" on the Coffee Device Selection Screen
-      And I advanced to the Choose Cups Screen
-      When I enter "a"
-      And I press "Continue"
-      Then I expect to still be on the Choose Cups Screen
-    */
-    test(
-        "should not advance from Choose Cups Screen with letter for cup amount",
-        () {
-      //your code here
-      //if you can restrict the keyboard to numbers only you can delete this test
-    },skip:true);
+      await driver?.tap(find.byValueKey('passwordField'));
+      await driver?.enterText('');
 
-    /*
-      Given I chose "Drip Machine" on the Coffee Device Selection Screen
-      And I advanced to the Choose Cups Screen
-      When I press "Continue"
-      Then I expect to still be on the Choose Cups Screen
-    */
-    test("should not advance from Choose Cups Screen without cups", () {
-      //your code here
-    },skip:true);
+      await driver?.tap(find.byValueKey('usernameField'));
+      await driver?.enterText('username12');
 
-    /*
-      Given I chose "Drip Machine" on the Coffee Device Selection Screen
-      And I advanced to the Choose Cups Screen
-      When I enter "-1"
-      And I press "Continue"
-      Then I expect to still be on the Choose Cups Screen
-    */
-    test("should not advance from Choose Cups Screen with negative cup amount",
-        () {
-      //your code here
-    },skip:true);
+      // Attempt to sign up without entering password
+      await driver?.tap(find.byValueKey('signInButton'));
+      // Verify that the warning is shown
+      expect(await driver?.getText(find.text('Password is empty')), 'Password is empty');
 
-    /*
-      Given I chose "Drip Machine" on the Coffee Device Selection Screen
-      And I advanced to the Choose Cups Screen
-      When I enter "a"
-      And I press "Continue"
-      Then I expect to still be on the Choose Cups Screen
-    */
-    test(
-        "should not advance from Choose Cups Screen with letter for cup amount",
-        () {
-      //your code here
-      //if you can restrict the keyboard to numbers only you can delete this test
+    // Attempt to sign up without matching passwords
+      await driver?.tap(find.byValueKey('usernameField'));
+      await driver?.enterText('username12');
+
+      await driver?.tap(find.byValueKey('passwordField'));
+      await driver?.enterText('password');
+
+      // Attempt to sign in without entering a username
+      await driver?.tap(find.byValueKey('signInButton'));
+      // Verify that the warning is shown
+      expect(await driver?.getText(find.text('Passwords do not match')), 'Passwords do not match');
     });
-  },skip:true);
+    test('should get warning if Login field missing',() async
+    {
+//////////////////////////////////////////////////////////////////////////////////////
+       // Go back to the main screen using the back button on the app bar
+      print('Tapping back icon to return to main screen');
+      await driver?.tap(find.byTooltip('Back'));
+      await Future.delayed(const Duration(seconds: 1));
+      await driver?.tap(find.text('Login'));
+      await Future.delayed(const Duration(seconds: 1)); 
+///////////////////////////////////////////////////////////////////////////////////////////
+     //Attempting to login without username
+     print('Testing login warnings');
+      await driver?.tap(find.byValueKey('passwordField'));
+      await driver?.enterText('password');
 
-  group('Back Button', () {
-    //make up your own tests to check that the back button works
+      // await driver?.tap(find.byValueKey('usernameField'));
+      // await driver?.enterText('username12');
+
+      // Attempt to sign in without entering a username
+      await driver?.tap(find.byValueKey('signInButton'));
+      // Verify that the warning is shown
+      expect(await driver?.getText(find.text('Username is empty')), 'Username is empty');
+
+      //Attempting to login without password
+      await driver?.tap(find.byValueKey('passwordField'));
+      await driver?.enterText('');
+
+      await driver?.tap(find.byValueKey('usernameField'));
+      await driver?.enterText('username12');
+
+      // Attempt to sign in without entering a username
+      await driver?.tap(find.byValueKey('signInButton'));
+      // Verify that the warning is shown
+      expect(await driver?.getText(find.text('Password is empty')), 'Password is empty');
+
+    });
+
+////////////// WILL NEED TO ADD YOUR CODE HERE FOR VERIFICATION OF DATABASE -E  ///////////////////////////
+    test('should not be able to login with wrong password', () async {
+
+    },skip:true);
+    
+ 
+    test('Username not found or incorrect', () async {
+
+    }, skip:true);
+
+   });
     //on every page
-  },skip:true);
 }

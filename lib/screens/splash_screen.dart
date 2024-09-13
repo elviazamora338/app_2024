@@ -44,9 +44,9 @@ class _SplashScreenState extends State<SplashScreen> {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,
-                fontFamily: "Cormorant Infant",
+                fontFamily: "CormorantInfant",
                 fontStyle: FontStyle.italic,
-                fontWeight: FontWeight.w400,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ],
