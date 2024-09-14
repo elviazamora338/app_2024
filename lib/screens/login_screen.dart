@@ -21,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
        leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: Color(0xFFB14D60),
+            color: Color.fromARGB(255, 208, 237, 242),
           ),
           onPressed: () {
             Navigator.pop(context);
@@ -29,18 +29,15 @@ class _LoginScreenState extends State<LoginScreen> {
         ), 
         title: const Text("Login",
           style: TextStyle(
-            color: Color(0xFFB14D60),
+            color: Color.fromARGB(255, 208, 237, 242),
             fontSize: 20,
-            fontFamily: "Fredoka",
-            fontWeight: FontWeight.bold,
+            fontFamily: "Martel",
           ),
         ),
-      backgroundColor: const Color(0xFFF3ACB5),
+      backgroundColor: const Color.fromARGB(255, 2, 128, 144),
       ), 
-      backgroundColor: const Color(0xFF500F15),
-      // my body
-      body:  Center(
-        // creating a column
+      backgroundColor: const Color.fromARGB(255, 208, 237, 242),
+      body: Center(
         child: Column(
           // making sure it's in the center of screen
           mainAxisAlignment: MainAxisAlignment.center,
@@ -51,10 +48,9 @@ class _LoginScreenState extends State<LoginScreen> {
             const Text("Login",
               textAlign: TextAlign.left,
               style: TextStyle(
-                color: Color(0xFFF3ACB5),
+                color:  Color.fromARGB(255, 2, 128, 144),
                 fontSize: 35,
-                fontFamily: "Fredoka",
-                fontWeight: FontWeight.bold,
+                fontFamily: "Sansita",
               ),
             ),
             // some spacing
@@ -71,40 +67,40 @@ class _LoginScreenState extends State<LoginScreen> {
                     controller: _usernameController,
                     style: const TextStyle(
                       // color changes when entering text
-                      color: Color(0xFFF3ACB5),
+                      color: Color.fromARGB(255, 2, 128, 144),
                     ),
                     decoration: const InputDecoration(
                       labelText: "Username",
                       labelStyle: TextStyle(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 1, 156, 159),
                         fontSize: 15,
-                        fontFamily: "Montserrat-Regular",
+                        fontFamily: "Martel",
                       ),
                       prefixIcon: Icon(Icons.perm_identity,
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 1, 156, 159),
                       ),
                       hintText: "Enter Username",
                       hintStyle: TextStyle(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 1, 156, 159),
                         fontSize: 15,
-                        fontFamily: "Montserrat-Regular",
+                        fontFamily: "Martel",
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         borderSide: BorderSide(
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 1, 156, 159),
                         ),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         borderSide: BorderSide(
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 1, 156, 159),
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         borderSide: BorderSide(
-                          color: Color(0xFFF3ACB5),
+                          color: Color.fromARGB(255, 2, 128, 144),
                         ),
                       ),
                     ),
@@ -121,30 +117,30 @@ class _LoginScreenState extends State<LoginScreen> {
                     obscureText: true,
                     style: const TextStyle(
                       // color changes when inputting text
-                      color: Color(0xFFF3ACB5),
+                      color: Color.fromARGB(255, 2, 128, 144),
                     ),
                     decoration: const InputDecoration(
                       labelText: "Password",
                       labelStyle: TextStyle(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 1, 156, 159),
                         fontSize: 15,
-                        fontFamily: "Montserrat-Regular",
+                        fontFamily: "Martel",
                       ),
                       prefixIcon: Icon(Icons.password,
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 1, 156, 159),
                       ),
                       hintText: "Enter Password",
                       hintStyle: TextStyle(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 1, 156, 159),
                         fontSize: 15,
-                        fontFamily: "Montserrat-Regular",
+                        fontFamily: "Martel",
                       ),
                       // the border of the textfield
                       border: OutlineInputBorder( 
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         borderSide: BorderSide(
                           // color of the border
-                          color: Colors.white, 
+                          color: Color.fromARGB(255, 1, 156, 159), 
                         ),
                       ),
                       // when the textfield is enabled
@@ -152,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                          borderRadius: BorderRadius.all(Radius.circular(10)),
                         borderSide: BorderSide(
                           // Border color when enabled
-                          color: Colors.white, 
+                          color: Color.fromARGB(255, 1, 156, 159), 
                         ),
                       ),
                       // when the textfield is focused
@@ -160,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         borderSide: BorderSide(
                           // Border color when focused
-                          color: Color(0xFFF3ACB5), 
+                          color: Color.fromARGB(255, 2, 128, 144), 
                         ),
                       ),
                     ),
@@ -178,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   // changing the sttyle of the button
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFF3ACB5),
+                    backgroundColor: const Color.fromARGB(255, 1, 156, 159),
                     // minimumSize: const Size(200, 40),
                     minimumSize: const Size(300, 40),
                     shape: RoundedRectangleBorder(
@@ -187,9 +183,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   child: const Text("Login",
                     style: TextStyle(
-                      color: Color(0xFF500F15),
+                      color: Colors.white,
                       fontSize: 17,
-                      fontFamily: "Fedoka",
+                      fontFamily: "Martel",
                     ),
                   ),
                 ),
