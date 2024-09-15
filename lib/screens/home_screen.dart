@@ -1,8 +1,8 @@
-import 'package:app_swe2024/screens/splash_screen.dart';
+import 'package:app_swe2024/screens/menu_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:app_swe2024/screens/sign_in_screen.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -11,28 +11,33 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFD0EDF2),
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black,
-          ),
-          tooltip: 'Back',
-          onPressed: () {
-             Navigator.push(
-              context,MaterialPageRoute(builder: (context) => SplashScreen())
-            );
-          },
-        ), 
-        title: const Text("Home",
+        title: const Text(
+          "Home",
           style: TextStyle(
-            color:  Colors.black,
-            fontSize: 20,
+            color: Color(0xFFD0EDF2),
+            //fontSize: 20,
             fontFamily: "Martel",
             fontWeight: FontWeight.bold,
           ),
         ),
-      )
-    ); 
-    }
+        backgroundColor: const Color(0xFF028090),
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.menu, color: Color(0xFFD0EDF2)),
+              onPressed: () {
+                Scaffold.of(context).openDrawer(); // Open the drawer using the context from Builder
+              },
+            );
+          },
+        ),
+      ),
+      drawer: const Drawer(
+        // Add the const keyword here
+        child: MenuScreen(),
+      ),
+    );
+  }
 }
