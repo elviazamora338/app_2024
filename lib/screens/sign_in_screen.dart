@@ -11,26 +11,28 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF500F15),
+      backgroundColor: const Color.fromARGB(255, 2, 128, 144),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: 
           [
             // const SizedBox(height: 80),
-            const Text("Spell Book",
+            const Text("KinSocial",
               style: TextStyle(
-                color: Color(0xFFFCD7DD),
+                color: Colors.white,
                 fontSize: 48,
-                fontFamily: "Fredoka",
+                fontFamily: "Sansita",
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const Text("Everyday Planning",
+            const Text("Social Calendar",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,
-                fontFamily: "Montserrat-Italic",
+                fontFamily: "CormorantInfant",
+                fontStyle: FontStyle.italic,
+                fontWeight: FontWeight.w500,
               ),
             ),
             const SizedBox(height: 20),
@@ -39,7 +41,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 navigateTo(SignUpScreen());
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFF3ACB5),
+                backgroundColor: const Color.fromARGB(255, 1, 156, 159),
                 minimumSize: const Size(200, 40),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -48,10 +50,8 @@ class _SignInScreenState extends State<SignInScreen> {
               child: const Text
               ('Sign Up',
                 style: TextStyle(
-                  color:  Color(0xFFB14D60),
-                  fontSize: 14,
-                  fontFamily: 'Montserrat-Regular',
-                  fontWeight: FontWeight.bold, 
+                  color:  Colors.white,
+                  fontFamily: 'Martel',
                 )
               ),
             ),
@@ -60,7 +60,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 navigateTo(LoginScreen());
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFF3ACB5),
+                backgroundColor: const Color.fromARGB(255, 1, 156, 159),
                 minimumSize: const Size(200, 40),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -69,10 +69,9 @@ class _SignInScreenState extends State<SignInScreen> {
               child: const Text
                 ('Login',
                   style: TextStyle(
-                    color: Color(0xFFB14D60),
+                    color: Colors.white,
                     fontSize: 14,
-                    fontFamily: 'Montserrat-Regular', 
-                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Martel', 
                   )
                 ),
             ),

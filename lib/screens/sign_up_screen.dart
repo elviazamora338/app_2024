@@ -22,7 +22,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
          leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: Color(0xFFB14D60),
+            color: Color.fromARGB(255, 208, 237, 242),
           ),
           tooltip: 'Back',
           onPressed: () {
@@ -31,15 +31,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ), 
         title: const Text("Sign Up",
           style: TextStyle(
-            color: Color(0xFFB14D60),
+            color: Color.fromARGB(255, 208, 237, 242),
             fontSize: 20,
-            fontFamily: "Fredoka",
-            fontWeight: FontWeight.bold,
+            fontFamily: "Martel",
           ),
         ),
-        backgroundColor: const Color(0xFFF3ACB5),
+        backgroundColor: const Color.fromARGB(255, 2, 128, 144),
       ), 
-      backgroundColor: const Color(0xFF500F15),
+      backgroundColor: const Color.fromARGB(255, 208, 237, 242),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -48,9 +47,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             'Sign Up',
             style: TextStyle(
               fontSize: 35,
-              color:  Color(0xFFF3ACB5),
-              fontFamily: "Fredoka",
-              fontWeight: FontWeight.bold,
+              color:  Color.fromARGB(255, 2, 128, 144),
+              fontFamily: "Sansita",
 
             ),
           ),
@@ -68,30 +66,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       key: const Key('usernameField'),
                       // to store the input of the field username
                       controller: _usernameController,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Color.fromARGB(255, 2, 128, 144)),
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         labelText: 'Username',
                         labelStyle: const TextStyle (
-                          color: Colors.white,
-                          fontFamily:"Montserrat-Regular",
+                          color: Color.fromARGB(255, 2, 128, 144),
+                          fontFamily:"Martel",
                           fontSize: 15.0,
                         ),
                         hintText: 'Enter Username',
                         hintStyle: const TextStyle (
-                          color:  Color(0xFFF3ACB5),
-                          fontFamily:"Montserrat-Regular",
+                          color:  Color.fromARGB(255, 2, 128, 144),
+                          fontFamily:"Martel",
                           fontSize: 15.0,
                         ),
-                        prefixIcon: const Icon(Icons.perm_identity, color: Colors.white),
+                        prefixIcon: const Icon(Icons.perm_identity, color: Color.fromARGB(255, 2, 128, 144)),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(color: Colors.white),
+                          borderSide: const BorderSide(color: Color.fromARGB(255, 2, 128, 144)),
                         ),
                         focusedBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           borderSide: BorderSide(
-                            color: Color(0xFFF3ACB5),
+                            color: Color.fromARGB(255, 2, 128, 144),
                           ),
 
                         ),
@@ -117,30 +115,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       key: const Key('passwordField'),
                       // to store the input of the field password
                       controller: _passwordController,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Color.fromARGB(255, 2, 128, 144)),
                       keyboardType: TextInputType.visiblePassword,
                       decoration: InputDecoration(
                         labelText: 'Password',
                         labelStyle: const TextStyle (
-                          color: Colors.white,
-                          fontFamily:"Montserrat-Regular",
+                          color: Color.fromARGB(255, 2, 128, 144),
+                          fontFamily:"Martel",
                           fontSize: 15.0,
                         ),
                         hintText: 'Enter Password',
                         hintStyle: const TextStyle (
-                          color:  Color(0xFFF3ACB5),
-                          fontFamily:"Montserrat-Regular",
+                          color:  Color.fromARGB(255, 2, 128, 144),
+                          fontFamily:"Martel",
                           fontSize: 15.0,
                         ),
-                        prefixIcon: const Icon(Icons.password, color: Colors.white),
+                        prefixIcon: const Icon(Icons.password, color: Color.fromARGB(255, 2, 128, 144)),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(color: Colors.white),
+                          borderSide: const BorderSide(color: Color.fromARGB(255, 2, 128, 144)),
                         ),
                         focusedBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           borderSide: BorderSide(
-                            color: Color(0xFFF3ACB5),
+                            color: Color.fromARGB(255, 2, 128, 144),
                           ),
 
                         ),
@@ -166,30 +164,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       key: const Key('re-enterpasswordField'),
                       // to store the input of the field password
                       controller: _reEnterPasswordController,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Color.fromARGB(255, 2, 128, 144)),
                       keyboardType: TextInputType.visiblePassword,
                       decoration: InputDecoration(
                         labelText: 'Re-Enter Password',
                         labelStyle: const TextStyle (
-                          color: Colors.white,
-                          fontFamily:"Montserrat-Regular",
+                          color: Color.fromARGB(255, 2, 128, 144),
+                          fontFamily:"Martel",
                           fontSize: 15.0,
                         ),
                         hintText: 'Re-Enter Password',
                         hintStyle: const TextStyle (
-                          color:  Color(0xFFF3ACB5),
-                          fontFamily:"Montserrat-Regular",
+                          color:  Color.fromARGB(255, 2, 128, 144),
+                          fontFamily:"Martel",
                           fontSize: 15.0,
                         ),
-                        prefixIcon: const Icon(Icons.password, color: Colors.white),
+                        prefixIcon: const Icon(Icons.password, color: Color.fromARGB(255, 2, 128, 144)),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(color: Colors.white),
+                          borderSide: const BorderSide(color: Color.fromARGB(255, 2, 128, 144)),
                         ),
                         focusedBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           borderSide: BorderSide(
-                            color: Color(0xFFF3ACB5),
+                            color: Color.fromARGB(255, 2, 128, 144),
                           ),
 
                         ),
@@ -214,7 +212,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       onPressed: () {
                         authorization.signIn(context, _usernameController, _passwordController, _reEnterPasswordController);
                       },
-                      color:const Color(0xFFF3ACB5),
+                      color:const Color.fromARGB(255, 1, 156, 159),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
@@ -223,8 +221,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           'Sign Up',
                           style: TextStyle(
                             fontSize: 17,
-                            color: Color(0xFF500F15),
-                            fontFamily: "Fredoka",
+                            color: Colors.white,
+                            fontFamily: "Martel",
                           ),
                         ),
                     ),

@@ -26,25 +26,27 @@ class _SplashScreenState extends State<SplashScreen> {
 @override
  Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Color(0xFF500F15),
+      backgroundColor: Color.fromARGB(255, 2, 128, 144),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: 
           [
-            Text("Spell Book",
+            Text("KinSocial",
               style: TextStyle(
-                color: Color(0xFFFCD7DD),
+                color: Colors.white,
                 fontSize: 48,
-                fontFamily: "Fredoka",
+                fontFamily: "Sansita",
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Text("Everyday Planning",
+            Text("Social Calendar",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,
-                fontFamily: "Montserrat-Italic",
+                fontFamily: "CormorantInfant",
+                fontStyle: FontStyle.italic,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ],
