@@ -2,27 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:app_swe2024/screens/welcome_screen.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
-// opening the database
-Future<Database> initializeDatabase() async {
-  // Get the path to the app's documents directory
-  Directory documentsDirectory = await getApplicationDocumentsDirectory();
-  String path = join(documentsDirectory.path, 'Group.db');
-
-  // Check if the database already exists to avoid overwriting it
-  if (FileSystemEntity.typeSync(path) == FileSystemEntityType.notFound) {
-    // Load the asset and write it to the documents directory
-    ByteData data = await rootBundle.load('assets/database/Group.db');
-    List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-    await File(path).writeAsBytes(bytes);
-  }
-
-  // Open the database
-  return openDatabase(path);
-}
 class Authorization {
 
   // list that contains the warnings
@@ -36,35 +20,69 @@ class Authorization {
   "Login Successful"
   ];
 
+  // opening the database
+  Future<Database> initializeDatabase() async {
+    // Get the path to the app's documents directory
+    Directory documentsDirectory = await getApplicationDocumentsDirectory();
+    String path = join(documentsDirectory.path, 'Group.db');
+
+    // Check if the database already exists to avoid overwriting it
+    if (FileSystemEntity.typeSync(path) == FileSystemEntityType.notFound) {
+      // Load the asset and write it to the documents directory
+      ByteData data = await rootBundle.load('assets/database/Group.db');
+      List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+      await File(path).writeAsBytes(bytes);
+    }
+
+    // Open the database
+    return openDatabase(path);
+  }
+
   // this will get the records from the database
   void getRecords() async {
-   try {
-    // Initialize the database
-    Database db = await initializeDatabase();
+    try {
+      // Initialize the database
+      Database db = await initializeDatabase();
 
-    // Check if the Users table exists by listing all tables
-    List<Map<String, dynamic>> tables = await db.rawQuery('SELECT name FROM sqlite_master WHERE type="table"');
-    print("Tables in the database: $tables");
+      // Check if the Users table exists by listing all tables
+      List<Map<String, dynamic>> tables = await db.rawQuery('SELECT name FROM sqlite_master WHERE type="table"');
+      print("Tables in the database: $tables");
 
-    // Query all records from the Users table
-    List<Map<String, dynamic>> result = await db.rawQuery('SELECT Username FROM Users');
+        // Query all records from the Users table
+      List<Map<String, dynamic>> result = await db.rawQuery('SELECT Username FROM Users');
 
-    // Check if the table has any data
-    if (result.isEmpty) {
-      print("No records found in the Users table.");
-    } 
-    else {
-       // Print all records from the Users table
-      result.forEach((row) {
+        // Check if the table has any data
+      if (result.isEmpty) {
+        print("No records found in the Users table.");
+      } 
+      else {
+        // Print all records from the Users table
+        result.forEach((row) {
         print("Username: ${row['Username']}");
-      });
+        });
+      }
+    } 
+    catch (e) {
+      // Print any errors that occur
+      print("Error occurred: $e");
     }
-  } 
-  catch (e) {
-    // Print any errors that occur
-    print("Error occurred: $e");
   }
-}
+  
+  // for uploading an image
+  Future<File?> addImage() async {
+    // image picker
+    var picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    // if not null
+    if (image != null) {
+      // return the picked image
+      return File(image.path);  
+    } 
+    // else null
+    else {
+      return null;
+    }
+  }
 
    // function to validate login credentials are entered and correct
   // will need to change this when confirming from datbase - E
@@ -95,6 +113,7 @@ class Authorization {
       return warnings[6];
     }
   }
+
   // function to login
   void signIn(BuildContext context, TextEditingController _usernameController, TextEditingController _passwordController, TextEditingController? _reEnterPassword)
   {
@@ -125,6 +144,5 @@ class Authorization {
     });
     }
   }
- 
 
 }

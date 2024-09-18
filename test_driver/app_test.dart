@@ -106,21 +106,22 @@ void main() {
       // Button should take user to the group's home page and so
       // the driver should find the text "Home"
       expect(await driver?.getText(find.text('Home')), 'Home');
-
-///////// UNCOMMENT THIS SECTION AFTER CODE IS COMPLETE TO TEST//////////////////////////////////////////////
-      // // YOU CAN TEST YOUR TESTS BY OPENING YOUR EMULATOR AND RUNNING THIS COMMAND
-      // // IN YOUR VSC TERMINAL flutter drive --target=test_driver/app.dart
-
+      
+    });
+    // testing if upload button is present
+    test("Uploading images button", () async {
+      expect(await driver?.getText(find.text("Upload Image")), "Upload Image");
+      /////////////////////////////////////////////////////////////////////////////
+      /// Remove later on -E
       // // Go back to the main screen using the back button on the app bar
       print('Tapping back icon to return to main screen');
       await Future.delayed(const Duration(seconds: 1));
       await driver?.tap(find.byTooltip('Back'));
       await Future.delayed(const Duration(seconds: 3));
-         
-      
     });
 
   });
+    
 
   group('Sad Paths', () {
     test("should get warning if Sign Up fields missing", () async {
@@ -208,5 +209,8 @@ void main() {
     }, skip:true);
 
    });
+
+   
+   
     //on every page
 }
