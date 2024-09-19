@@ -1,3 +1,4 @@
+import 'package:app_swe2024/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:app_swe2024/screens/splash_screen.dart';
 import 'package:app_swe2024/screens/welcome_screen.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SplashScreen(),
+      home: HomeScreen(),
     );
   }
 }

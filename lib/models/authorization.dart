@@ -38,7 +38,7 @@ class Authorization {
     return openDatabase(path);
   }
 
-  // this will get the records from the database
+ // This will get the records from the database
   void getRecords() async {
     try {
       // Initialize the database
@@ -48,41 +48,84 @@ class Authorization {
       List<Map<String, dynamic>> tables = await db.rawQuery('SELECT name FROM sqlite_master WHERE type="table"');
       print("Tables in the database: $tables");
 
-        // Query all records from the Users table
+      // Query all records from the Users table
       List<Map<String, dynamic>> result = await db.rawQuery('SELECT Username FROM Users');
 
-        // Check if the table has any data
+      // Check if the table has any data
       if (result.isEmpty) {
         print("No records found in the Users table.");
-      } 
-      else {
+      } else {
         // Print all records from the Users table
         result.forEach((row) {
-        print("Username: ${row['Username']}");
+          print("Username: ${row['Username']}");
         });
       }
-    } 
-    catch (e) {
+    } catch (e) {
       // Print any errors that occur
       print("Error occurred: $e");
     }
   }
-  
-  // for uploading an image
-  Future<File?> addImage() async {
-    // image picker
-    var picker = ImagePicker();
-    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-    // if not null
-    if (image != null) {
-      // return the picked image
-      return File(image.path);  
-    } 
-    // else null
-    else {
-      return null;
+  Future<Uint8List?> getImageFromDatabase(String creator) async {
+  try {
+    // Initialize the database
+    Database db = await initializeDatabase();
+
+    // Query the image data from the Tasks table
+    List<Map<String, dynamic>> result = await db.query(
+      'Tasks',
+      columns: ['Photos'],
+      where: 'creator = ?',
+      whereArgs: [creator],
+    );
+
+    // If an image is found, return it as bytes
+    if (result.isNotEmpty) {
+      return result.first['Photos'] as Uint8List;
+    }
+  } catch (e) {
+    print("Error retrieving image: $e");
+  }
+  return null; // Return null if no image is found or an error occurs
+}
+
+
+  // Function for uploading an image and adding it to the database
+  Future<void> addImageToDatabase(String creator, final image) async {
+    try {
+      // Image picker
+      // var picker = ImagePicker();
+      // final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+
+      // If an image is picked
+      if (image != null) {
+        // Convert image to bytes
+        Uint8List imageBytes = await File(image.path).readAsBytes();
+
+        // Initialize the database
+        Database db = await initializeDatabase();
+
+        // Insert image into the Tasks table where creator matches
+        int updatedCount = await db.update(
+          'Tasks',
+          {'Photos': imageBytes},  // Inserting the image bytes
+          where: 'creator = ?',
+          whereArgs: [creator],  // Replace with actual username
+        );
+
+        // Checking if the update was successful
+        if (updatedCount > 0) {
+          print("Image successfully added for creator: $creator");
+        } else {
+          print("No matching record found for creator: $creator");
+        }
+      } else {
+        print("No image selected.");
+      }
+    } catch (e) {
+      print("Error occurred while adding image: $e");
     }
   }
+
 
    // function to validate login credentials are entered and correct
   // will need to change this when confirming from datbase - E
