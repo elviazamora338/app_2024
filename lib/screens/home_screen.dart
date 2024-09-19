@@ -26,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
+              tooltip: 'Menu',
               icon: const Icon(Icons.menu, color: Color(0xFFD0EDF2)),
               onPressed: () {
                 Scaffold.of(context).openDrawer(); // Open the drawer using the context from Builder
