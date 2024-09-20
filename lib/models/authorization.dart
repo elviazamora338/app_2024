@@ -65,10 +65,14 @@ class Authorization {
       print("Error occurred: $e");
     }
   }
+
+  // this gets the image from the Database will later change this or copy for other stuff
+  // this function loads from the database the image 
   Future<Uint8List?> getImageFromDatabase(String creator) async {
   try {
     // Initialize the database
     Database db = await initializeDatabase();
+    
 
     // Query the image data from the Tasks table
     List<Map<String, dynamic>> result = await db.query(
@@ -79,13 +83,16 @@ class Authorization {
     );
 
     // If an image is found, return it as bytes
-    if (result.isNotEmpty) {
+    if (result.isNotEmpty) 
+    {
       return result.first['Photos'] as Uint8List;
     }
-  } catch (e) {
+  } 
+  catch (e) {
     print("Error retrieving image: $e");
   }
-  return null; // Return null if no image is found or an error occurs
+  // Return null if no image is found or an error occurs
+  return null; 
 }
 
 
@@ -115,13 +122,16 @@ class Authorization {
         // Checking if the update was successful
         if (updatedCount > 0) {
           print("Image successfully added for creator: $creator");
-        } else {
+        } 
+        else {
           print("No matching record found for creator: $creator");
         }
-      } else {
+      } 
+      else {
         print("No image selected.");
       }
-    } catch (e) {
+    } 
+    catch (e) {
       print("Error occurred while adding image: $e");
     }
   }
