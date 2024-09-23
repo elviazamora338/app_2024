@@ -84,15 +84,39 @@ void main() {
       //should get successful login text
       expect(await driver?.getText(find.text('Welcome!')), 'Welcome!');
       // Go back to the main screen using the back button on the app bar
+      //print('Tapping back icon to return to main screen');
+      //await Future.delayed(const Duration(seconds: 1));
+      //await driver?.tap(find.byTooltip('Back'));
+      //await Future.delayed(const Duration(seconds: 3));
+///////////////////////////////////////////////////////////////////////////////
+    });
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+///  Here you will create a test to check if the button works correctly -E
+    test("user should be able to choose a group", () async {
+
+      // driver should tap button with the text "Group1"
+      await driver?.tap(find.text('Group 1'));
+      // Button should take user to the group's home page and so
+      // the driver should find the text "Home"
+      expect(await driver?.getText(find.text('Home')), 'Home');
+      
+    });
+    // testing if upload button is present
+    test("Uploading images button", () async {
+      expect(await driver?.getText(find.text("Upload Image")), "Upload Image");
+      /////////////////////////////////////////////////////////////////////////////
+      /// Remove later on -E
+      // // Go back to the main screen using the back button on the app bar
       print('Tapping back icon to return to main screen');
       await Future.delayed(const Duration(seconds: 1));
       await driver?.tap(find.byTooltip('Back'));
       await Future.delayed(const Duration(seconds: 3));
-///////////////////////////////////////////////////////////////////////////////
+
     });
 /////////////////////////////////////////////////////////////////////////////////////////////////////
   });
-  group('Sad Paths for Sign In Screen\n', () {
+
+  group('Sad Paths', () {
     test("should get warning if Sign Up fields missing", () async {
       // sign up button
       await driver?.tap(find.text('Sign Up'));
@@ -174,6 +198,7 @@ void main() {
     test('should not be able to login with wrong password', () async {},
         skip: true);
 
+
     test('Username not found or incorrect', () async {}, skip: true);
   });
   group('Happy Paths for Welcome Screen\n', () {
@@ -191,18 +216,18 @@ void main() {
       expect(await driver?.getText(find.text('Home')), 'Home');
     });
   });
+  
   group('Happy Paths for Menu Tab\n', () {
-    ////////////////////////////////////////////////////////////////////////////////
-    /// Jessica CREATE A TEST HERE THAT ENSURES USER CAN PRESS MENU ICON
-    /// NAME THE TEST
     test("User should be able to open menu tab", () async {
       await driver?.tap(find.byTooltip('Menu'));
       await Future.delayed(const Duration(seconds: 3));
       await driver?.tap(find.text('Home'));
       await Future.delayed(const Duration(seconds: 3));
     });
-    }, 
+  }, 
       //skip: true
     // paste into terminal: flutter drive --target=test_driver/app.dart
-  );
+);
 }
+
+
