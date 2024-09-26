@@ -36,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
+      ),
        
       body: Column(
         children: [
