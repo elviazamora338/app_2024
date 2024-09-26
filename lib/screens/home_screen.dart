@@ -36,21 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              tooltip: 'Menu',
-              icon: const Icon(Icons.menu, color: Color(0xFFD0EDF2)),
-              onPressed: () {
-                Scaffold.of(context).openDrawer(); // Open the drawer using the context from Builder
-              },
-            );
-          },
-        ),
-      ),
-      drawer: const Drawer(
-        child: MenuScreen(),
-      ),
+       
       body: Column(
         children: [
           Container(
