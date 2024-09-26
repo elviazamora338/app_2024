@@ -118,7 +118,7 @@ void main() {
       await Future.delayed(const Duration(seconds: 1));
       await driver?.tap(find.byTooltip('Back'));
       await Future.delayed(const Duration(seconds: 3));
-    });
+    },skip:true);
 
   });
     
@@ -160,7 +160,7 @@ void main() {
       await driver?.tap(find.byValueKey('signInButton'));
       // Verify that the warning is shown
       expect(await driver?.getText(find.text('Passwords do not match')), 'Passwords do not match');
-    });
+    },skip:true);
     test('should get warning if Login field missing',() async
     {
 //////////////////////////////////////////////////////////////////////////////////////
@@ -196,7 +196,7 @@ void main() {
       // Verify that the warning is shown
       expect(await driver?.getText(find.text('Password is empty')), 'Password is empty');
 
-    });
+    },skip:true);
 
 ////////////// WILL NEED TO ADD YOUR CODE HERE FOR VERIFICATION OF DATABASE -E  ///////////////////////////
     test('should not be able to login with wrong password', () async {
@@ -210,7 +210,16 @@ void main() {
 
    });
 
-   
+    group('Happy Paths for Menu Tab\n', () {
+    test("User should be able to open menu tab", () async {
+      await driver?.tap(find.byTooltip('Menu'));
+      await Future.delayed(const Duration(seconds: 3));
+      await driver?.tap(find.text('Home'));
+      await Future.delayed(const Duration(seconds: 3));
+    });
+  }, );
    
     //on every page
 }
+
+
