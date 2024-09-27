@@ -16,6 +16,9 @@ Authorization authorization = Authorization();
 File? uploaded;
 
 class _HomeScreenState extends State<HomeScreen> {
+  final TextEditingController _descriptionController = TextEditingController();
+  String _description = '';
+
   void initState() {
     super.initState();
     // When the screen loads, check for an existing image for 'username1'
@@ -32,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
           style: TextStyle(
             color: Color(0xFFD0EDF2),
             fontSize: 20,
-            fontFamily: "Martel",
+            fontFamily: "Mar tel",
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -89,17 +92,67 @@ class _HomeScreenState extends State<HomeScreen> {
           Expanded(
             child: Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   // Display the image if it's available
                   uploaded != null
-                      ? Image.file(
-                          uploaded!,
-                          height: 200,
-                          width: 200,
-                          fit: BoxFit.cover,
-                        )
-                      : const Text("No image selected"),
+                    //Displayed the image right under username bar
+                    ? Container(
+                         width: MediaQuery.of(context).size.width,
+                         height: 250,
+                         child: Image.file(
+                            uploaded!,
+                            fit: BoxFit.cover,
+                         ),
+                      )
+                      : const Text("No Image Selection"),
+                  // Adds the description
+                  _description.isNotEmpty
+                    ? Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        _description,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )
+                    : Container(),
+                  if(uploaded != null)
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          const Text(
+                            'username123',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: TextField(
+                              controller: _descriptionController,
+                              decoration: const InputDecoration(
+                                hintText: 'Enter description',
+                                hintStyle: TextStyle(
+                                color: const Color(0xFF028090),
+                              ),
+                              filled: true,
+                              fillColor: const Color(0xFFD0EDF2),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.zero,
+                                borderSide: BorderSide.none,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      )
+                      
+                    ),
                   ElevatedButton(
                     onPressed: (){ pickAndUploadImage('username1'); },
                     style: ElevatedButton.styleFrom(
@@ -132,6 +185,19 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         uploaded = file; // Display the existing image
       });
+    }
+  }
+
+  //Function to add the description
+  Future<void> addsDescription(String creator) async{
+    String description = _descriptionController.text;
+
+    if(_description.isNotEmpty){
+      setState(() {
+        _description = description;
+      });
+
+      //could add to database?? idk how that works.. kinda like line 192
     }
   }
 
