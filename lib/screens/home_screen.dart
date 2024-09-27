@@ -1,8 +1,11 @@
 import 'dart:io';
+import 'dart:typed_data';
+import 'package:app_swe2024/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:app_swe2024/models/authorization.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:app_swe2024/screens/menu_screen.dart';
-
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -13,6 +16,11 @@ Authorization authorization = Authorization();
 File? uploaded;
 
 class _HomeScreenState extends State<HomeScreen> {
+  void initState() {
+    super.initState();
+    // When the screen loads, check for an existing image for 'username1'
+    checkExistingImage('username1');
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: const Drawer(
         child: MenuScreen(),
       ),
+       
       body: Column(
         children: [
           Container(
@@ -92,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                       : const Text("No image selected"),
                   ElevatedButton(
-                    onPressed: uploadImage,
+                    onPressed: (){ pickAndUploadImage('username1'); },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                     ),
@@ -111,17 +120,38 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+  // Check if there is an existing image in the database for the given creator
+  Future<void> checkExistingImage(String creator) async {
+    Uint8List? existingImage = await authorization.getImageFromDatabase(creator);
+    if (existingImage != null) {
+      // Convert the image bytes to a File object
+      Directory tempDir = await getTemporaryDirectory();
+      File file = File('${tempDir.path}/existing_image.png');
+      file.writeAsBytesSync(existingImage);
 
-  void uploadImage() async {
-    // wait for image uploaded
-    File? image = await authorization.addImage();
+      setState(() {
+        uploaded = file; // Display the existing image
+      });
+    }
+  }
 
-    // if the variable image is not null then user uploaded an image
+ Future<void> pickAndUploadImage(String creator) async {
+    // Image picker
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+
+    // If the user selected an image
     if (image != null) {
       setState(() {
-        // assign uploaded to image
-        uploaded = image;
+        // Update the image in the UI
+        uploaded = File(image.path);
       });
+
+      // Add the image to the database for the given creator
+      await authorization.addImageToDatabase(creator, image);
+    } else {
+      // Show a message if no image is selected
+      print("No image selected.");
     }
   }
 }
