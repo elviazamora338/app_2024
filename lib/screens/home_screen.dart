@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:app_swe2024/models/authorization.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
-
+import 'package:app_swe2024/screens/menu_screen.dart';
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -36,6 +36,20 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              tooltip: 'Menu',
+              icon: const Icon(Icons.menu, color: Color(0xFFD0EDF2)),
+              onPressed: () {
+                Scaffold.of(context).openDrawer(); // Open the drawer using the context from Builder
+              },
+            );
+          },
+        ),
+      ),
+      drawer: const Drawer(
+        child: MenuScreen(),
       ),
        
       body: Column(
