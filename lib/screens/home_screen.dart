@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   // Display the image if it's available
                   uploaded != null
-                    //Displayed the image right under username bar
+                    //Displayed the image right under username bar,
                     ? Container(
                          width: MediaQuery.of(context).size.width,
                          height: 250,
