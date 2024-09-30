@@ -61,22 +61,22 @@ class _HomeScreenState extends State<HomeScreen> {
             width: double.infinity,
             height: 75,
             color: const Color(0xFFD0EDF2),
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
+                      padding: EdgeInsets.only(left: 20.0),
                       child: CircleAvatar(
                         radius: 20,
                         backgroundImage: AssetImage('profile.jpg'),
                       ),
                     ),
-                    const SizedBox(width: 10),
+                    SizedBox(width: 10),
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0),
-                      child: const Text(
+                      padding: EdgeInsets.only(bottom: 10.0),
+                      child: Text(
                         'username123',
                         style: TextStyle(
                           fontSize: 20,
@@ -84,6 +84,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,  // Aligns widgets to the right
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(right: 10.0),
+                      child: 
+                        Icon(Icons.keyboard_arrow_down_outlined),
+                    ),
+                    
                   ],
                 ),
               ],
