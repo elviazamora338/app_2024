@@ -61,10 +61,10 @@ class _HomeScreenState extends State<HomeScreen> {
             width: double.infinity,
             height: 75,
             color: const Color(0xFFD0EDF2),
-            child: const Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
+                const Row(
                   children: [
                     Padding(
                       padding: EdgeInsets.only(left: 20.0),
@@ -90,11 +90,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,  // Aligns widgets to the right
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(right: 10.0),
-                      child: 
-                        Icon(Icons.keyboard_arrow_down_outlined),
+                      padding: const EdgeInsets.only(right: 10.0),
+                      child: IconButton(
+                        key: const Key('arrowIcon'),
+                        icon: Icon(
+                          _isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+                        ),
+                        onPressed: _toggleVisibility,
+                      ),
                     ),
-                    
                   ],
                 ),
               ],
@@ -105,6 +109,10 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                 Visibility(
+                  visible: _isExpanded,
+                  child: Column(
+                    children: [
                   // Display the image if it's available
                   uploaded != null
                     //Displayed the image right under username bar,
@@ -176,6 +184,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
+                  ],)
+                  ),
                 ],
               ),
             ),
@@ -230,5 +240,12 @@ class _HomeScreenState extends State<HomeScreen> {
       // Show a message if no image is selected
       print("No image selected.");
     }
+  }
+
+  bool _isExpanded = false;
+  void _toggleVisibility() {
+    setState(() {
+      _isExpanded = !_isExpanded;
+    });
   }
 }
