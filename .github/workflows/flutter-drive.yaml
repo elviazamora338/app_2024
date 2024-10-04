@@ -4,74 +4,61 @@ name: Unit and Integration tests
 # This workflow is triggered when pull requests are opened or updated
 on: [pull_request]
 
-# A workflow run is made up of one or more jobs.
 jobs:
-  # id of job, a string that is unique to the "jobs" node above.
   android:
-    # The type of machine to run the job on.
     runs-on: ubuntu-latest
     
-    # Creates a build matrix for your jobs. You can define different
-    # variations of an environment to run each job in.
     strategy:
-      # A set of different configurations of the virtual environment.
       matrix:
-        api-level:
-          - "29"
-          
-      # When set to true, GitHub cancels all in-progress jobs if any
-      # matrix job fails.
+        api-level: ["29"]
       fail-fast: true
       
-    # Contains a sequence of tasks.
     steps:
-      # The branch or tag ref that triggered the workflow will be
-      # checked out.
-      # https://github.com/actions/checkout
+      # Checkout the repository
       - uses: actions/checkout@v3
 
-      # Sets up Java 17
-      # https://github.com/actions/setup-java
+      # Set up Java 17
       - name: Java 17 Setup
         uses: actions/setup-java@v2
         with:
           distribution: "zulu"
           java-version: "17.x"
 
-      # Sets up a flutter environment with version 3.24.1.
-      # https://github.com/marketplace/actions/flutter-action
+      # Set up Flutter SDK
       - name: Setup Flutter SDK
         uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.24.1"
-          channel: "stable" # This can be 'stable', 'dev', or 'beta' based on your needs
- # Step 4: Install Node.js (needed for starting your Node.js server)
+          channel: "stable"
+
+      # Set up Node.js for the server
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "16.x" # or whichever version you need
+          node-version: '16.x'
 
-      # Step 5: Install Node.js dependencies (if needed)
-      - name: Install Node.js dependencies
+      # Install server dependencies
+      - name: Install Node.js Dependencies
         run: npm install
-        working-directory: ./  # Adjust this path to where your Node.js server is located
+        working-directory: ./ # Update if the server is in a subdirectory
 
-      # Step 6: Start the Node.js server in the background
-      - name: Start Node.js server
+      # Start Node.js server
+      - name: Start Node.js Server
+        run: nohup node server.js > server.log 2>&1 &
+        working-directory: ./ # Update if server.js is in a different directory
+
+      # Wait for server to start
+      - name: Wait for Server to Start
         run: |
-          node ./server.js &   # Adjust this path
-          echo $! > server.pid   # Save the server process ID to stop it later
+          sleep 10
+          curl http://localhost:3000/login || exit 1
 
-      # Step 7: Wait for the server to be fully started (adjust the time as needed)
-      - name: Wait for server to start
-        run: sleep 5
-
-      # Step 8: Run Unit Tests
+      # Run Unit Tests
       - name: Run Unit Tests
         run: flutter test
-        
-      # Step 9: Run Integration Tests using an Android Emulator
-      - name: "Run Flutter Driver tests"
+
+      # Run Integration Tests using Android Emulator
+      - name: Run Flutter Driver tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
@@ -79,6 +66,7 @@ jobs:
           profile: Nexus 6
           script: flutter drive --target=test_driver/app.dart
 
-      # Step 10: Stop the Node.js server after tests are done
-      - name: Stop Node.js server
-        run: kill $(cat server.pid)
+      # Stop Node.js server
+      - name: Stop Node.js Server
+        run: |
+          kill $(lsof -t -i:3000) || echo "No server running on port 3000"
