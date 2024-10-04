@@ -210,7 +210,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: MaterialButton(
                       minWidth: double.infinity,
                       onPressed: () {
-                        authorization.signIn(context, _usernameController, _passwordController, _reEnterPasswordController);
+                        authorization.signUp(context, _usernameController, _passwordController, _reEnterPasswordController);
                       },
                       color:const Color.fromARGB(255, 1, 156, 159),
                       shape: RoundedRectangleBorder(
