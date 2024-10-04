@@ -45,12 +45,32 @@ jobs:
         with:
           flutter-version: "3.24.1"
           channel: "stable" # This can be 'stable', 'dev', or 'beta' based on your needs
-          
-      # Run Unit Tests
+ # Step 4: Install Node.js (needed for starting your Node.js server)
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16.x" # or whichever version you need
+
+      # Step 5: Install Node.js dependencies (if needed)
+      - name: Install Node.js dependencies
+        run: npm install
+        working-directory: ./  # Adjust this path to where your Node.js server is located
+
+      # Step 6: Start the Node.js server in the background
+      - name: Start Node.js server
+        run: |
+          node ./server.js &   # Adjust this path
+          echo $! > server.pid   # Save the server process ID to stop it later
+
+      # Step 7: Wait for the server to be fully started (adjust the time as needed)
+      - name: Wait for server to start
+        run: sleep 5
+
+      # Step 8: Run Unit Tests
       - name: Run Unit Tests
         run: flutter test
         
-      # Run Integration Tests using an Android Emulator
+      # Step 9: Run Integration Tests using an Android Emulator
       - name: "Run Flutter Driver tests"
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -58,3 +78,7 @@ jobs:
           arch: x86_64
           profile: Nexus 6
           script: flutter drive --target=test_driver/app.dart
+
+      # Step 10: Stop the Node.js server after tests are done
+      - name: Stop Node.js server
+        run: kill $(cat server.pid)

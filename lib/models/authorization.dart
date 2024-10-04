@@ -226,7 +226,7 @@ class Authorization {
         {
           final response = await http.post(
             // UNTIL I CAN FIND A SOLUTION PUT YOUR IPCONFIG
-          Uri.parse('http://169.254.108.148:3000/login'),
+          Uri.parse('http://localhost:3000/login'),
           headers: {'Content-Type': 'application/json'},
           body: jsonEncode({'username': username, 'password': password}),
         );
