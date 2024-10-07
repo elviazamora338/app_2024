@@ -209,6 +209,12 @@ void main() {
     }, skip:true);
 
    });
+    test('user should be able to toggle arrow icon', () async {
+      await driver?.tap(find.byValueKey('arrowIcon'));
+      await Future.delayed(const Duration(seconds: 3));
+      //need to add more to the test- K
+    }
+    );
 
     group('Happy Paths for Menu Tab\n', () {
     test("User should be able to open menu tab", () async {
