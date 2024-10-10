@@ -46,11 +46,10 @@ void main() {
     //  WILL NEED TO CHANGE THIS TEST WHEN CONFIRMING FROM DATABASE - E
     // the username is correct and in the database but the password is incorrect
     test('return incorrect password', (){
-
     // remove ",skip: true" to run the test
     },skip: true);
     
-  });
+
   
   // WILL ALSO NEED TO CHANGE TO CHECK DATABASE - E
   // test to validate if user is found
@@ -58,4 +57,28 @@ void main() {
   {
     // remove ",skip: true" to run the test
   },skip: true);
+
+ 
+    test('Username not found or incorrect', () async {
+
+    }, skip:true);
+
+   });
+    test('user should be able to toggle arrow icon', () async {
+      await driver?.tap(find.byValueKey('arrowIcon'));
+      await Future.delayed(const Duration(seconds: 3));
+      //need to add more to the test- K
+    }
+    );
+
+    group('Happy Paths for Menu Tab\n', () {
+    test("User should be able to open menu tab", () async {
+      await driver?.tap(find.byTooltip('Menu'));
+      await Future.delayed(const Duration(seconds: 3));
+      await driver?.tap(find.text('Home'));
+      await Future.delayed(const Duration(seconds: 3));
+    });
+  }, );
+   
+    //on every page
 }

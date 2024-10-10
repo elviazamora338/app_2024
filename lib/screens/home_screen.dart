@@ -7,6 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:app_swe2024/screens/menu_screen.dart';
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -74,12 +76,14 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               // Define the action when the user icon is pressed
             },
+
           ),
         ],
       ),
       drawer: const Drawer(
         child: MenuScreen(),
       ),
+
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -110,6 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
+
                     ],
                   ),
                   Row(
@@ -132,15 +137,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-            ),
 
-            /*
-          Expanded(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-          */
+            ),
 
             Visibility(
                 visible: _isExpanded,
@@ -178,6 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               });
                             },
                           ),
+
                           //const SizedBox(width: 6),
 
                           // Comment Icon
@@ -225,6 +224,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
+
                                 ),
                               ),
                               const SizedBox(width: 8),
@@ -349,10 +349,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
+
                   ],
                 )),
           ],
         ),
+
       ),
     );
   }
@@ -425,6 +427,4 @@ class _HomeScreenState extends State<HomeScreen> {
       _isExpanded = !_isExpanded;
     });
   }
-
-
 }
