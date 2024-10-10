@@ -8,52 +8,12 @@ import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
 
-
 void main() {
   FlutterDriver? driver;
 
-<<<<<<< HEAD
-    // test to check if the username and password is empty
-    test('return warning that username and password is empty', () {
-      // expect the validate function to return the warning that username and password is empty
-      // grabs validate function from instance of Authorization class
-      expect(authorization.validate("", "",""), warnings[2]);
-    });
-    // test to check if the username is empty
-    test('return warning that username is empty', () {
-      // expect the validate function to return the warning that username is empty
-      // grabs validate function from instance of Authorization class
-      expect(authorization.validate("", "password", "re-entered password"), warnings[0]);
-    });
-    
-    // test to check if the password is empty
-    test('return warning if password is empty', () {
-      // expect the validate function to return the warning that password is empty
-      // grabs validate function from instance of Authorization class
-      expect(authorization.validate("username", "", "re-entered password"), warnings[1]);
-    });
-
-    // test to check if passwords match
-    test('return warning if password and re-entered password do not match', ()
-    {
-       // expect the validate function to return the warning that the password inputs don't match
-      expect(authorization.validate("username", "password", "password12"), warnings[5]); 
-    });
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //  WILL NEED TO CHANGE THIS TEST WHEN CONFIRMING FROM DATABASE - E
-    // the username is correct and in the database but the password is incorrect
-    test('return incorrect password', (){
-
-    // remove ",skip: true" to run the test
-    },skip: true);
-    
-
-=======
   // Connect to the Flutter driver before running any tests.
   setUpAll(() async {
     driver = await FlutterDriver.connect();
->>>>>>> 12d6c0c (driver test file changed, disable the logger and counter thing in main.dart)
   });
 
   // Close the connection to the driver after the tests have completed.
@@ -65,15 +25,6 @@ void main() {
 
   group('Happy Paths', () {
   
-<<<<<<< HEAD
-  // WILL ALSO NEED TO CHANGE TO CHECK DATABASE - E
-  // test to validate if user is found
-  test('return username not found',()
-  {
-    // remove ",skip: true" to run the test
-  },skip: true);
-
-=======
   /// tests the functionality of the sign in button
     test("should be able choose login option", () async {
     print('Tapping "Login" button');
@@ -237,23 +188,12 @@ void main() {
 
     },skip:true);
     
->>>>>>> 12d6c0c (driver test file changed, disable the logger and counter thing in main.dart)
  
     test('Username not found or incorrect', () async {
 
     }, skip:true);
 
    });
-<<<<<<< HEAD
-    test('user should be able to toggle arrow icon', () async {
-      await driver?.tap(find.byValueKey('arrowIcon'));
-      await Future.delayed(const Duration(seconds: 3));
-      //need to add more to the test- K
-    }
-    );
-
-    group('Happy Paths for Menu Tab\n', () {
-=======
   group('Home Happy Paths', (){
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///  Here you will create a test to check if the button works correctly -E
@@ -297,7 +237,6 @@ void main() {
    
 
   group('Happy Paths for Menu Tab\n', () {
->>>>>>> 12d6c0c (driver test file changed, disable the logger and counter thing in main.dart)
     test("User should be able to open menu tab", () async {
       await driver?.tap(find.byTooltip('Menu'));
       await Future.delayed(const Duration(seconds: 3));
@@ -305,12 +244,6 @@ void main() {
       await Future.delayed(const Duration(seconds: 3));
     });
   }, );
-<<<<<<< HEAD
-   
-    //on every page
-
-}
-=======
 
     test('user should be able to naviagte through menu tab', () async {
       print('Testing Home');
@@ -334,4 +267,3 @@ void main() {
     });
     //on every page
 }
->>>>>>> 12d6c0c (driver test file changed, disable the logger and counter thing in main.dart)
