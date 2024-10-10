@@ -2,8 +2,19 @@ import 'package:app_swe2024/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:app_swe2024/screens/splash_screen.dart';
 import 'package:app_swe2024/screens/welcome_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    print("Firebase Initialized Successfully");
+  } catch (e) {
+    print("Firebase Initialization Failed: $e");
+  }
   runApp(const MyApp());
 }
 

@@ -70,7 +70,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: EdgeInsets.only(left: 20.0),
                       child: CircleAvatar(
                         radius: 20,
-                        backgroundImage: AssetImage('profile.jpg'),
+                        backgroundColor: Colors.pink,
+                        // backgroundImage: AssetImage('profile.jpg'),
                       ),
                     ),
                     SizedBox(width: 10),
