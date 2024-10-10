@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:app_swe2024/screens/splash_screen.dart';
+//import 'package:app_swe2024/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:app_swe2024/models/authorization.dart';
 import 'package:image_picker/image_picker.dart';
@@ -25,32 +25,18 @@ class Comment {
 
 
 class _HomeScreenState extends State<HomeScreen> {
-
-  // To track like state
-  bool isLiked = false;
-  //Track number of comments
-  int commentCount = 0;
-  List<Comment> comments = []; // Store comments
-  // Controller for comment input
-  final TextEditingController _commentController = TextEditingController(); 
   final TextEditingController _descriptionController = TextEditingController();
   String _description = '';
 
+  bool _isLiked = false;
+  bool _isCommenting = false;
+  final List<String> _comments = [];
+
+  @override
   void initState() {
     super.initState();
     // When the screen loads, check for an existing image for 'username1'
     checkExistingImage('username1');
-  }
-
-    // Method to add a comment with username
-  void addComment(String username) {
-    if (_commentController.text.isNotEmpty) {
-      setState(() {
-        // Add Comment object
-        comments.add(Comment(username: username, comment: _commentController.text));
-        _commentController.clear(); // Clear the text field after adding
-      });
-    }
   }
 
   @override
@@ -80,215 +66,293 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           },
         ),
+        actions: [
+          IconButton(
+            tooltip: 'User Profile',
+            icon: const Icon(Icons.account_circle_rounded,
+                color: Color(0xFFD0EDF2), size: 30.0),
+            onPressed: () {
+              // Define the action when the user icon is pressed
+            },
+          ),
+        ],
       ),
-
       drawer: const Drawer(
         child: MenuScreen(),
       ),
-
-      body: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            height: 75,
-            color: const Color(0xFFD0EDF2),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 20.0),
-                      child: CircleAvatar(
-                        radius: 20,
-                        backgroundImage: AssetImage('profile.jpg'),
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 10.0),
-                      child: Text(
-                        'username123',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: 75,
+              color: const Color(0xFFD0EDF2),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 20.0),
+                        child: CircleAvatar(
+                          radius: 20,
+                          backgroundImage: AssetImage('profile.jpg'),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.end, // Aligns widgets to the right
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(right: 10.0),
-                      child: Icon(Icons.keyboard_arrow_down_outlined),
-                    ),
-                  ],
-                ),
-              ],
+                      SizedBox(width: 10),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 10.0),
+                        child: Text(
+                          'username123',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment:
+                        MainAxisAlignment.end, // Aligns widgets to the right
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10.0),
+                        child: IconButton(
+                          key: const Key('arrowIcon'),
+                          icon: Icon(
+                            _isExpanded
+                                ? Icons.keyboard_arrow_up
+                                : Icons.keyboard_arrow_down,
+                          ),
+                          onPressed: _toggleVisibility,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
 
+            /*
           Expanded(
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  // Display the image if it's available
-                  uploaded != null
-                      //Displayed the image right under username bar,
-                      ? SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          height: 250,
-                          child: Image.file(
-                            uploaded!,
-                            fit: BoxFit.cover,
-                          ),
-                        )
-                      : const Text("No Image Selection"),
+          */
 
-                  // Adds the description
-                  _description.isNotEmpty
-                      ? Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            _description,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+            Visibility(
+                visible: _isExpanded,
+                child: Column(
+                  children: [
+                    // Display the image if it's available
+                    uploaded != null
+                        //Displayed the image right under username bar,
+                        ? SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            height: 250,
+                            child: Image.file(
+                              uploaded!,
+                              fit: BoxFit.cover,
                             ),
-                          ),
-                        )
-                      : Container(),
-
-                  // Show description field if an image is uploaded
-                  if (uploaded != null)
+                          )
+                        : const Text("No Image Selection"),
                     Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            const Text(
-                              'username123',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Expanded(
-                              child: TextField(
-                                controller: _descriptionController,
-                                decoration: const InputDecoration(
-                                  hintText: 'Enter description',
-                                  hintStyle: TextStyle(
-                                    color: Color(0xFF028090),
-                                  ),
-                                  filled: true,
-                                  fillColor: Color(0xFFD0EDF2),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.zero,
-                                    borderSide: BorderSide.none,
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        )),
-
-                  //upload image button
-                  ElevatedButton(
-                    onPressed: () {
-                      pickAndUploadImage('username1');
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                    ),
-                    child: const Text(
-                      "Upload Image",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-
-                  // Row for heart and comment icons
-                  if(uploaded != null)
-                    Row(
-                      children: [
-                        // Heart Icon
-                        IconButton(
-                          key: const Key('heartButton'),
-                          icon: Icon(
-                            isLiked ? Icons.favorite : Icons.favorite_border,
-                            color: isLiked ? Colors.red : Colors.black,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              isLiked = !isLiked;
-                            });
-                          },
-                        ),
-                        const SizedBox(width: 5),
-
-                        // Comment Icon and Text
-                        const Icon(Icons.comment),
-                        const SizedBox(width: 5),
-                        Text('${comments.length} comments'),
-                      ],
-                    ),
-                    const SizedBox(width: 10),
-
-                  // Text Field to Add a Comment
-                  if(uploaded != null)
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: TextField(
-                              key: const Key('commentField'),
-                              controller: _commentController,
-                              decoration: const InputDecoration(
-                                hintText: 'Add a comment...',
-                                border: OutlineInputBorder(),
-                              ),
-                            ),
-                          ),
+                          // Heart Icon with red fill on press
                           IconButton(
-                            key: const Key('sendButton'),
-                            icon: const Icon(Icons.send),
-                            // Replace with actual username
-                            onPressed: () => addComment("username123"), 
+                            icon: Icon(
+                              _isLiked
+                                  ? Icons.favorite
+                                  : Icons.favorite_border_outlined,
+                              color: _isLiked ? Colors.red : Colors.black,
+                              size: 30.0,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _isLiked = !_isLiked;
+                              });
+                            },
                           ),
+                          //const SizedBox(width: 6),
+
+                          // Comment Icon
+                          IconButton(
+                            icon: const Icon(
+                              Icons.chat_bubble_outline,
+                              color: Colors.black,
+                              size: 30.0,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _isCommenting = !_isCommenting;
+                              });
+                            },
+                          ),
+                          const SizedBox(width: 6),
+
+                          const Icon(Icons.add_circle_outline,
+                              color: Colors.black, size: 30.0),
                         ],
                       ),
                     ),
 
-                  // Display Comments List
-                  if (uploaded != null)
-                    ListView.builder(
-                      shrinkWrap: true, // Important to avoid infinite height error
-                      physics: const NeverScrollableScrollPhysics(), // Disable scrolling inside ListView
-                      itemCount: comments.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          leading: Text(
-                          comments[index].username, // Display username
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          title: Text(comments[index].comment),
-                        );
+                    // Adds the description
+                    _description.isNotEmpty
+                        ? Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              _description,
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )
+                        : Container(),
+                    if (uploaded != null)
+                      Padding(
+                          padding:
+                              const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
+                          child: Row(
+                            children: [
+                              const Text(
+                                'username123',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: TextField(
+                                  controller: _descriptionController,
+                                  decoration: const InputDecoration(
+                                    hintText: 'Enter description',
+                                    hintStyle: TextStyle(
+                                      color: Color(0xFF028090),
+                                    ),
+                                    filled: true,
+                                    fillColor: Color(0xFFD0EDF2),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.zero,
+                                      borderSide: BorderSide.none,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.send),
+                                onPressed: () {
+                                  addsDescription('username123');
+                                },
+                              ),
+                            ],
+                          )),
+
+                    //comment input field that appears when _isCommenting is true
+                    if (_isCommenting)
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                const Text(
+                                  // Hardcoded username, but ideally, you'd pull this from user data.
+                                  'username123',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: TextField(
+                                    // This should be linked to capture the input
+                                    controller: _descriptionController,
+                                    enabled: true, // Ensure it's enabled
+                                    decoration: const InputDecoration(
+                                      hintText: 'Add a comment...',
+                                      hintStyle: TextStyle(
+                                        color: Color(0xFF028090),
+                                      ),
+                                      filled: true,
+                                      fillColor: Color(0xFFD0EDF2),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.zero,
+                                        borderSide: BorderSide.none,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.send),
+                                  onPressed: () {
+                                    //Check if the button press works
+                                    print("Send button pressed"); //DOES WORKS
+                                    // Trigger the comment addition
+                                    addsDescription('username123');
+                                  },
+                                ),
+                              ],
+                            ),
+
+                            // Display the comments
+                            SizedBox(
+                              height: 200, // Define a height for the ListView
+                              child: ListView.builder(
+                                itemCount: _comments.length,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 4.0),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Text(
+                                          'username123',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 8),
+                                        Expanded(
+                                          child: Text(_comments[index]),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                    ElevatedButton(
+                      onPressed: () {
+                        pickAndUploadImage('username1');
                       },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                      ),
+                      child: const Text(
+                        "Upload Image",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
-
-
-                ],
-              ),
-            ),
-          ),
-        ],
+                  ],
+                )),
+          ],
+        ),
       ),
     );
   }
@@ -313,12 +377,25 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> addsDescription(String creator) async {
     String description = _descriptionController.text;
 
-    if (_description.isNotEmpty) {
+    // Check if we are capturing the text input
+    //print("User input: $description"); //THIS WROK
+
+    if (description.isNotEmpty) {
       setState(() {
         _description = description;
+        _comments.add(description); // Add the new comment to the list
+        // Clear the input field after adding the comment
+        _descriptionController.clear();
       });
 
       //could add to database?? idk how that works.. kinda like line 192
+      await authorization.addCommentToDatabase(creator, description);
+
+      // Debugging to see if the comment is added
+      //print('Comment added: $description');
+      print("Current comments list: $_comments");
+    } else {
+      print("No comment added, input field was empty."); //THIS
     }
   }
 
@@ -340,6 +417,13 @@ class _HomeScreenState extends State<HomeScreen> {
       // Show a message if no image is selected
       print("No image selected.");
     }
+  }
+
+  bool _isExpanded = false;
+  void _toggleVisibility() {
+    setState(() {
+      _isExpanded = !_isExpanded;
+    });
   }
 
 
