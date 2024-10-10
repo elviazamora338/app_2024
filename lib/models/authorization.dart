@@ -198,4 +198,6 @@ class Authorization {
     }
   }
 
+  addCommentToDatabase(String creator, String description) {}
+
 }
