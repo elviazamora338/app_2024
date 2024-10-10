@@ -7,6 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:app_swe2024/screens/menu_screen.dart';
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -19,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _descriptionController = TextEditingController();
   String _description = '';
 
+  @override
   void initState() {
     super.initState();
     // When the screen loads, check for an existing image for 'username1'
@@ -50,6 +53,15 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           },
         ),
+        actions: [
+          IconButton(
+            tooltip: 'User Profile',
+            icon: const Icon(Icons.account_circle_rounded, color: Color(0xFFD0EDF2), size: 30.0),
+            onPressed: () {
+            // Define the action when the user icon is pressed
+            },  
+          ),
+        ],
       ),
       drawer: const Drawer(
         child: MenuScreen(),
@@ -113,10 +125,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   visible: _isExpanded,
                   child: Column(
                     children: [
-                  // Display the image if it's available
-                  uploaded != null
-                    //Displayed the image right under username bar,
-                    ? Container(
+                      // Display the image if it's available
+                      uploaded != null
+                      //Displayed the image right under username bar,
+                    ? SizedBox(
                          width: MediaQuery.of(context).size.width,
                          height: 250,
                          child: Image.file(
@@ -124,7 +136,21 @@ class _HomeScreenState extends State<HomeScreen> {
                             fit: BoxFit.cover,
                          ),
                       )
-                      : const Text("No Image Selection"),
+                    : const Text("No Image Selection"),
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(8.0,8.0,8.0,0.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(Icons.favorite_border_outlined, color: Colors.black, size: 30.0),
+                          SizedBox(width: 6),
+                          Icon(Icons.chat_bubble_outline, color: Colors.black, size: 30.0),
+                          SizedBox(width: 6),
+                          Icon(Icons.add_circle_outline, color: Colors.black, size: 30.0),
+                        ],
+                      ),
+                    ),
+
                   // Adds the description
                   _description.isNotEmpty
                     ? Padding(
@@ -140,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     : Container(),
                   if(uploaded != null)
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.fromLTRB(8.0,0.0,8.0,8.0),
                       child: Row(
                         children: [
                           const Text(
@@ -157,10 +183,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               decoration: const InputDecoration(
                                 hintText: 'Enter description',
                                 hintStyle: TextStyle(
-                                color: const Color(0xFF028090),
+                                color: Color(0xFF028090),
                               ),
                               filled: true,
-                              fillColor: const Color(0xFFD0EDF2),
+                              fillColor: Color(0xFFD0EDF2),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.zero,
                                 borderSide: BorderSide.none,
